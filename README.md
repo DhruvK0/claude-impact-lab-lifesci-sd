@@ -37,9 +37,8 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 | Resource | Link | Notes |
 |---|---|---|
-| SciFact | [github.com/allenai/scifact](https://github.com/allenai/scifact) | 1.4K expert-written scientific claims with supporting or refuting abstracts and evidence sentences. Listed as CC BY-NC 2.0 on its dataset card: check the repo's LICENSE |
-| PubMedQA | [huggingface.co/datasets/bigbio/pubmed_qa](https://huggingface.co/datasets/bigbio/pubmed_qa) | Yes/no/maybe questions built from PubMed abstracts, with 1K expert-labeled. Listed as MIT |
-| BioASQ | [bioasq.org](https://bioasq.org/) | Biomedical question-answering challenge data. Custom research license: check before use |
+| SciFact | [github.com/allenai/scifact](https://github.com/allenai/scifact) | 1,409 expert-written scientific claims (809 train, 300 dev, 300 test; test labels are withheld) with supporting or refuting abstracts and evidence sentences, over a 5,183-abstract corpus. Per its LICENSE: claims CC BY 4.0, abstracts ODC-By 1.0 |
+| PubMedQA | [huggingface.co/datasets/qiaojin/PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA) | 1,000 expert-labeled yes/no/maybe questions built from PubMed abstracts, as one small file (`pqa_labeled`). MIT license |
 | PubMed | [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/) | Abstracts for any topic you choose. Respect NCBI rate limits |
 | ClinicalTrials.gov | [clinicaltrials.gov](https://clinicaltrials.gov/) | Public trial records: good for checking claims about trial design and results |
 
@@ -61,10 +60,8 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 | Resource | Link | Notes |
 |---|---|---|
-| DepMap / PRISM drug screens | [depmap.org/portal/data_page](https://depmap.org/portal/data_page/) | Real dose-response data (PRISM used 8 doses, 4-fold dilutions from 10 µM). Confirm license and file versions on the downloads page |
-| ChEMBL | [ebi.ac.uk/chembl](https://www.ebi.ac.uk/chembl/) | Bioactivity data for drug-like molecules |
-| PubChem | [pubchem.ncbi.nlm.nih.gov](https://pubchem.ncbi.nlm.nih.gov/) | Compounds and bioassays |
-| Therapeutics Data Commons | [tdcommons.ai](https://tdcommons.ai/) | Ready-to-use drug discovery datasets (`pip install PyTDC`). Check each dataset's license |
+| ChEMBL | [ebi.ac.uk/chembl](https://www.ebi.ac.uk/chembl/) | Bioactivity data (for example IC50 values) for drug-like molecules, through a REST API. A bulk database download is also available |
+| PubChem | [pubchem.ncbi.nlm.nih.gov](https://pubchem.ncbi.nlm.nih.gov/) | Compounds and bioassays. Assay results can be downloaded as CSV through the REST API |
 | RCSB Protein Data Bank | [rcsb.org](https://www.rcsb.org/) | Experimentally determined protein structures |
 | AlphaFold DB | [alphafold.ebi.ac.uk](https://alphafold.ebi.ac.uk/) | Predicted protein structures |
 | UniProt | [uniprot.org](https://www.uniprot.org/) | Protein sequences and annotations |
@@ -87,10 +84,10 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 | Resource | Link | Notes |
 |---|---|---|
-| Synthea | [github.com/synthetichealth/synthea](https://github.com/synthetichealth/synthea) | Open-source synthetic patient generator (Apache-2.0); its open data is public domain |
+| Synthea sample data | [synthetichealth.github.io/synthea-sample-data](https://synthetichealth.github.io/synthea-sample-data/) | Ready-made synthetic patient records (a 5 MB CSV zip: 111 patients, with names, SSNs and addresses, all fake): realistic personal data to scrub. The generator is [open source](https://github.com/synthetichealth/synthea) (Apache-2.0) and its open data is public domain |
 | Gretel synthetic PII dataset | [huggingface.co/datasets/gretelai/synthetic_pii_finance_multilingual](https://huggingface.co/datasets/gretelai/synthetic_pii_finance_multilingual) | Synthetic documents with labeled PII, made for testing PII scanners and de-identification. Financial documents rather than biotech, but a ready-made test set for a scrubber. Listed as Apache-2.0: check the dataset card |
 | PubMed Central Open Access subset | [pmc.ncbi.nlm.nih.gov/tools/openftlist](https://pmc.ncbi.nlm.nih.gov/tools/openftlist/) | Full-text scientific articles with real compound names, sequences and methods: realistic documents for a "what's sensitive here?" scanner. Use only this subset for bulk download, and check each article's Creative Commons license |
-| bioRxiv API | [api.biorxiv.org](https://api.biorxiv.org/) | Preprints, which read like unpublished work: good for practicing on early-stage content. Licenses vary by preprint |
+| bioRxiv API | [api.biorxiv.org](https://api.biorxiv.org/) | Preprints with full text, which read like unpublished work: good for practicing on early-stage content. Most preprints are not openly licensed (many are CC BY-NC-ND or have no reuse license), so use them for local practice and do not redistribute |
 
 *Hackathon tips:* There is no open "proprietary" lab data, which is the point. Have Claude generate fictional lab-notebook entries (invented codenames, compounds, sequences, partners and people) and treat them as if they were real. Pseudonymization is not anonymization: potency numbers, cell lines and sequences can identify a program with no names in sight. Do not use clinical de-identification corpora that require a data use agreement (for example n2c2): their terms forbid posting copies.
 
