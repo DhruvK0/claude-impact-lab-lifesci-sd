@@ -2,7 +2,7 @@
 
 Part II of the Claude Conversation series. Last month we talked about the future of AI in biotech and life sciences. Tonight we build.
 
-**Submission Deadline: 8:00pm**
+**Submission Deadline: 8:15pm**
 
 > **Disclaimer:** Data and resources below are subject to their own access terms, terms of service, usage policies, licensing, API rate limits, and data-use restrictions. Participants must review these before using any data. Use synthetic or public data only: no real proprietary, patient, or unpublished data in any tool.
 
@@ -11,13 +11,12 @@ Part II of the Claude Conversation series. Last month we talked about the future
 | Time | |
 |---|---|
 | 5:45 | Doors, food, find your team |
-| 6:15 | Kickoff and walkthrough |
-| 6:35 | Build starts. Mentors float |
-| 7:45 | Reminder: submit your repo, record your demo |
-| 8:00 | Hard deadline. Judges pick finalists |
-| 8:15 | Finalist demos: 5 min + 2 min questions |
-| 8:45 | Scores and winners |
-| 9:00 | Close. The conversations continue |
+| 6:00 | Introduction |
+| 6:15 | Build starts. Ambassadors float |
+| 8:00 | Reminder: submit your repo, record your demo |
+| 8:15 | Hard deadline. Judges pick finalists |
+| 8:30 | Finalist demos |
+| 8:45 | Winners, photos, close (done by 9) |
 
 ## How this works
 
@@ -97,7 +96,7 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 ## Submission Guidelines
 
-- Submit your **repo link** and an optional **2-minute screen recording** of your project working before the 8:00pm deadline. Organizers will share the submission link at kickoff.
+- Submit your **repo link** and an optional **2-minute screen recording** of your project working before the 8:15pm deadline. Organizers will share the submission link at the start of the night.
 - One submission per team. Only your most recent submission is reviewed.
 
 ## Required in Your Repo's README
@@ -112,7 +111,7 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 ## Rules
 
-- **Timing:** Your first commit must come after the build starts at 6:35pm. Earlier development evidence leads to disqualification. No pre-work, so every team starts level.
+- **Timing:** Your first commit must come after the build starts at 6:15pm. Earlier development evidence leads to disqualification. No pre-work, so every team starts level.
 - **Originality:** Third-party libraries and public datasets are fine. The core project must be built tonight.
 - **Teams:** Teams are formed in advance. One submission per team.
 - **Data use:** Synthetic or public data only. No real proprietary, patient, or unpublished data. Do not scrape or overload public services. Never commit an API key.
