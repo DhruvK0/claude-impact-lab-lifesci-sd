@@ -93,7 +93,7 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 ## Submission Guidelines
 
-- Submit your **repo link** and an optional **2-minute screen recording** of your project working before the 8:15pm deadline. Organizers will share the submission link at the start of the night.
+- Submit your **repo link** and a **2-minute screen recording** of your project working before the 8:15pm deadline. The recording is required: judges use it to review submissions quickly and pick the three finalists. Organizers will share the submission link at the start of the night.
 - One submission per team. Only your most recent submission is reviewed.
 
 ## Required in Your Repo's README
@@ -104,7 +104,7 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 - Data sources used (synthetic or public only: say which)
 - Architecture and approach, including how Claude was used to build it and how it runs inside the project
 - How you measured it, and what it does **not** guarantee
-- Demo recording of about 2 minutes (optional, but it makes judging dramatically easier)
+- Demo recording of about 2 minutes (required: judges use it to pick finalists)
 
 ## Rules
 
@@ -116,7 +116,7 @@ Pick **one** of the three tracks below. Teams are formed in advance (4 people: 2
 
 ## Judging Criteria
 
-Each category is scored 0 to 5. **Real-world impact counts double**, for a maximum of 30 points.
+Judges review every submission's repo and recording to pick three finalists, then score each finalist's demo on the criteria below. Each category is scored 0 to 5. **Real-world impact counts double**, for a maximum of 30 points.
 
 1. **Real-world impact (x2):** Would a scientist in this room use it on Monday? Does it help them trust, decide, or protect?
 2. **Rigor:** Does it measure itself (an eval, a score, a leak test)? Does it say what it does not guarantee?
