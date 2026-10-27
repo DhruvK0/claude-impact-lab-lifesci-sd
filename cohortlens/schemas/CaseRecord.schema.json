@@ -1,0 +1,345 @@
+{
+ "$defs": {
+  "AEEntry": {
+   "properties": {
+    "record_id": {
+     "title": "Record Id",
+     "type": "string"
+    },
+    "term": {
+     "title": "Term",
+     "type": "string"
+    },
+    "grade": {
+     "title": "Grade",
+     "type": "integer"
+    },
+    "serious": {
+     "title": "Serious",
+     "type": "boolean"
+    },
+    "relatedness": {
+     "title": "Relatedness",
+     "type": "string"
+    },
+    "onset_day": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Onset Day"
+    },
+    "action_taken": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Action Taken"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    }
+   },
+   "required": [
+    "record_id",
+    "term",
+    "grade",
+    "serious",
+    "relatedness"
+   ],
+   "title": "AEEntry",
+   "type": "object"
+  },
+  "DataQuery": {
+   "properties": {
+    "query_id": {
+     "title": "Query Id",
+     "type": "string"
+    },
+    "participant_id": {
+     "title": "Participant Id",
+     "type": "string"
+    },
+    "record_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Record Id"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    },
+    "issue": {
+     "title": "Issue",
+     "type": "string"
+    },
+    "raised_by": {
+     "title": "Raised By",
+     "type": "string"
+    },
+    "status": {
+     "default": "open",
+     "enum": [
+      "open",
+      "resolved"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "query_id",
+    "participant_id",
+    "issue",
+    "raised_by"
+   ],
+   "title": "DataQuery",
+   "type": "object"
+  },
+  "Observation": {
+   "properties": {
+    "value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Value"
+    },
+    "code": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Code"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    },
+    "record_id": {
+     "title": "Record Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "record_id"
+   ],
+   "title": "Observation",
+   "type": "object"
+  },
+  "VisitEntry": {
+   "properties": {
+    "visit": {
+     "title": "Visit",
+     "type": "string"
+    },
+    "visit_day": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit Day"
+    },
+    "date": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Date"
+    },
+    "observations": {
+     "additionalProperties": {
+      "$ref": "#/$defs/Observation"
+     },
+     "title": "Observations",
+     "type": "object"
+    }
+   },
+   "required": [
+    "visit"
+   ],
+   "title": "VisitEntry",
+   "type": "object"
+  }
+ },
+ "properties": {
+  "participant_id": {
+   "title": "Participant Id",
+   "type": "string"
+  },
+  "cohort": {
+   "title": "Cohort",
+   "type": "integer"
+  },
+  "dose_level_mg": {
+   "title": "Dose Level Mg",
+   "type": "integer"
+  },
+  "blinded": {
+   "default": true,
+   "title": "Blinded",
+   "type": "boolean"
+  },
+  "arm": {
+   "anyOf": [
+    {
+     "enum": [
+      "active",
+      "placebo"
+     ],
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Arm"
+  },
+  "visits": {
+   "items": {
+    "$ref": "#/$defs/VisitEntry"
+   },
+   "title": "Visits",
+   "type": "array"
+  },
+  "adverse_events": {
+   "items": {
+    "$ref": "#/$defs/AEEntry"
+   },
+   "title": "Adverse Events",
+   "type": "array"
+  },
+  "con_meds": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Con Meds",
+   "type": "array"
+  },
+  "genomics": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Genomics",
+   "type": "object"
+  },
+  "pathology": {
+   "items": {
+    "$ref": "#/$defs/Observation"
+   },
+   "title": "Pathology",
+   "type": "array"
+  },
+  "data_queries": {
+   "items": {
+    "$ref": "#/$defs/DataQuery"
+   },
+   "title": "Data Queries",
+   "type": "array"
+  },
+  "narrative": {
+   "default": "",
+   "title": "Narrative",
+   "type": "string"
+  },
+  "locked": {
+   "default": false,
+   "title": "Locked",
+   "type": "boolean"
+  },
+  "lock_hash": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Lock Hash"
+  }
+ },
+ "required": [
+  "participant_id",
+  "cohort",
+  "dose_level_mg"
+ ],
+ "title": "CaseRecord",
+ "type": "object"
+}

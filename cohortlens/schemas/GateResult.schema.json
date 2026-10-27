@@ -1,0 +1,62 @@
+{
+ "properties": {
+  "gate_id": {
+   "title": "Gate Id",
+   "type": "string"
+  },
+  "metric": {
+   "title": "Metric",
+   "type": "string"
+  },
+  "description": {
+   "title": "Description",
+   "type": "string"
+  },
+  "op": {
+   "title": "Op",
+   "type": "string"
+  },
+  "threshold": {
+   "title": "Threshold",
+   "type": "number"
+  },
+  "value": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Value"
+  },
+  "passed": {
+   "anyOf": [
+    {
+     "type": "boolean"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Passed"
+  },
+  "note": {
+   "default": "",
+   "title": "Note",
+   "type": "string"
+  }
+ },
+ "required": [
+  "gate_id",
+  "metric",
+  "description",
+  "op",
+  "threshold",
+  "value",
+  "passed"
+ ],
+ "title": "GateResult",
+ "type": "object"
+}

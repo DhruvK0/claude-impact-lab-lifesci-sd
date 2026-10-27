@@ -1,0 +1,217 @@
+{
+ "$defs": {
+  "CohortDecisionCode": {
+   "enum": [
+    "ESCALATE",
+    "REPEAT_DOSE",
+    "DE_ESCALATE",
+    "R5_PAUSE"
+   ],
+   "title": "CohortDecisionCode",
+   "type": "string"
+  },
+  "RoutingCode": {
+   "enum": [
+    "R0",
+    "R1",
+    "RQ",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "title": "RoutingCode",
+   "type": "string"
+  }
+ },
+ "properties": {
+  "perturbation_id": {
+   "title": "Perturbation Id",
+   "type": "string"
+  },
+  "lane": {
+   "enum": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6"
+   ],
+   "title": "Lane",
+   "type": "string"
+  },
+  "kind": {
+   "title": "Kind",
+   "type": "string"
+  },
+  "expected_class": {
+   "enum": [
+    "MUST_DETECT",
+    "MUST_CHANGE",
+    "INVARIANT",
+    "MUST_RESIST"
+   ],
+   "title": "Expected Class",
+   "type": "string"
+  },
+  "participant_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Participant Id"
+  },
+  "cohort": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Cohort"
+  },
+  "applicable": {
+   "default": true,
+   "title": "Applicable",
+   "type": "boolean"
+  },
+  "skipped_reason": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Skipped Reason"
+  },
+  "detected": {
+   "default": false,
+   "title": "Detected",
+   "type": "boolean"
+  },
+  "detected_by": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Detected By",
+   "type": "array"
+  },
+  "reviewer_catches": {
+   "additionalProperties": {
+    "type": "boolean"
+   },
+   "title": "Reviewer Catches",
+   "type": "object"
+  },
+  "final_routing": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "expected_routing": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "clean_routing": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "final_cohort_decision": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/CohortDecisionCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "expected_cohort_decision": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/CohortDecisionCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "facts_invariant": {
+   "anyOf": [
+    {
+     "type": "boolean"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Facts Invariant"
+  },
+  "capitulated": {
+   "anyOf": [
+    {
+     "type": "boolean"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Capitulated"
+  },
+  "passed": {
+   "default": false,
+   "title": "Passed",
+   "type": "boolean"
+  },
+  "notes": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Notes",
+   "type": "array"
+  }
+ },
+ "required": [
+  "perturbation_id",
+  "lane",
+  "kind",
+  "expected_class"
+ ],
+ "title": "PerturbationOutcome",
+ "type": "object"
+}

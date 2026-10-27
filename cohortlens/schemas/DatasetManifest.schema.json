@@ -1,0 +1,113 @@
+{
+ "$defs": {
+  "PlantedScenario": {
+   "description": "Ground-truth signal deliberately placed in the synthetic data, for demos and evals.",
+   "properties": {
+    "scenario_id": {
+     "title": "Scenario Id",
+     "type": "string"
+    },
+    "participant_id": {
+     "title": "Participant Id",
+     "type": "string"
+    },
+    "cohort": {
+     "title": "Cohort",
+     "type": "integer"
+    },
+    "arm": {
+     "title": "Arm",
+     "type": "string"
+    },
+    "description": {
+     "title": "Description",
+     "type": "string"
+    },
+    "expected_rules": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Expected Rules",
+     "type": "array"
+    }
+   },
+   "required": [
+    "scenario_id",
+    "participant_id",
+    "cohort",
+    "arm",
+    "description",
+    "expected_rules"
+   ],
+   "title": "PlantedScenario",
+   "type": "object"
+  }
+ },
+ "properties": {
+  "dataset_id": {
+   "title": "Dataset Id",
+   "type": "string"
+  },
+  "seed": {
+   "title": "Seed",
+   "type": "integer"
+  },
+  "protocol_id": {
+   "title": "Protocol Id",
+   "type": "string"
+  },
+  "protocol_version": {
+   "title": "Protocol Version",
+   "type": "string"
+  },
+  "generated_at": {
+   "title": "Generated At",
+   "type": "string"
+  },
+  "n_participants": {
+   "title": "N Participants",
+   "type": "integer"
+  },
+  "n_records": {
+   "title": "N Records",
+   "type": "integer"
+  },
+  "records_by_stream": {
+   "additionalProperties": {
+    "type": "integer"
+   },
+   "title": "Records By Stream",
+   "type": "object"
+  },
+  "content_hash": {
+   "title": "Content Hash",
+   "type": "string"
+  },
+  "planted_scenarios": {
+   "items": {
+    "$ref": "#/$defs/PlantedScenario"
+   },
+   "title": "Planted Scenarios",
+   "type": "array"
+  },
+  "synthetic": {
+   "default": true,
+   "title": "Synthetic",
+   "type": "boolean"
+  }
+ },
+ "required": [
+  "dataset_id",
+  "seed",
+  "protocol_id",
+  "protocol_version",
+  "generated_at",
+  "n_participants",
+  "n_records",
+  "records_by_stream",
+  "content_hash",
+  "planted_scenarios"
+ ],
+ "title": "DatasetManifest",
+ "type": "object"
+}

@@ -1,0 +1,1494 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "CohortLens API",
+  "description": "Clinical Evidence Assurance for a simulated Phase 1 DSMB. Synthetic data only.",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/api/health": {
+   "get": {
+    "summary": "Health",
+    "operationId": "health_api_health_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/meta": {
+   "get": {
+    "summary": "Meta",
+    "operationId": "meta_api_meta_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/protocol": {
+   "get": {
+    "summary": "Get Protocol",
+    "operationId": "get_protocol_api_protocol_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/personas": {
+   "get": {
+    "summary": "Personas",
+    "operationId": "personas_api_personas_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/dataset": {
+   "get": {
+    "summary": "Dataset",
+    "operationId": "dataset_api_dataset_get",
+    "parameters": [
+     {
+      "name": "include_ground_truth",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Ground Truth"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/participants": {
+   "get": {
+    "summary": "Participants",
+    "operationId": "participants_api_participants_get",
+    "parameters": [
+     {
+      "name": "view",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "enum": [
+        "open",
+        "closed"
+       ],
+       "type": "string",
+       "default": "open",
+       "title": "View"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/participants/{pid}/records": {
+   "get": {
+    "summary": "Participant Records",
+    "operationId": "participant_records_api_participants__pid__records_get",
+    "parameters": [
+     {
+      "name": "pid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Pid"
+      }
+     },
+     {
+      "name": "view",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "enum": [
+        "open",
+        "closed"
+       ],
+       "type": "string",
+       "default": "open",
+       "title": "View"
+      }
+     },
+     {
+      "name": "stream",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Stream"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/records/{record_id}": {
+   "get": {
+    "summary": "Record",
+    "operationId": "record_api_records__record_id__get",
+    "parameters": [
+     {
+      "name": "record_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Record Id"
+      }
+     },
+     {
+      "name": "view",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "enum": [
+        "open",
+        "closed"
+       ],
+       "type": "string",
+       "default": "open",
+       "title": "View"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/oracle": {
+   "get": {
+    "summary": "Oracle",
+    "operationId": "oracle_api_oracle_get",
+    "parameters": [
+     {
+      "name": "view",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "enum": [
+        "open",
+        "closed"
+       ],
+       "type": "string",
+       "default": "closed",
+       "title": "View"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/perturbations": {
+   "get": {
+    "summary": "Perturbations",
+    "operationId": "perturbations_api_perturbations_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs": {
+   "get": {
+    "summary": "List Runs",
+    "operationId": "list_runs_api_runs_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "summary": "Create Run",
+    "operationId": "create_run_api_runs_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RunRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs/{run_id}": {
+   "get": {
+    "summary": "Get Run",
+    "operationId": "get_run_api_runs__run_id__get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Run Id"
+      }
+     },
+     {
+      "name": "include_stages",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": true,
+       "title": "Include Stages"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs/{run_id}/participants/{pid}": {
+   "get": {
+    "summary": "Run Participant",
+    "operationId": "run_participant_api_runs__run_id__participants__pid__get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Run Id"
+      }
+     },
+     {
+      "name": "pid",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Pid"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs/{run_id}/events": {
+   "get": {
+    "summary": "Run Events",
+    "description": "Server-sent events: one `data:` line per PipelineEvent until the run finishes.",
+    "operationId": "run_events_api_runs__run_id__events_get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Run Id"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": -1,
+       "title": "After"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/runs/{run_id}/frontend": {
+   "get": {
+    "summary": "Run Frontend",
+    "description": "The run in the exact shape cohort-lens/js/app.js reads (window.COHORT_LENS_DATA).",
+    "operationId": "run_frontend_api_runs__run_id__frontend_get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Run Id"
+      }
+     },
+     {
+      "name": "research_associate",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "Research associate",
+       "title": "Research Associate"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/review-queue": {
+   "get": {
+    "summary": "Review Queue",
+    "operationId": "review_queue_api_review_queue_get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Run Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/review-queue/{item_id}": {
+   "post": {
+    "summary": "Decide",
+    "operationId": "decide_api_review_queue__item_id__post",
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/Decision"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/verify": {
+   "post": {
+    "summary": "Verify",
+    "operationId": "verify_api_verify_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/VerifyRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VerificationReport"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/evaluations": {
+   "get": {
+    "summary": "List Evaluations",
+    "operationId": "list_evaluations_api_evaluations_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "summary": "Create Evaluation",
+    "operationId": "create_evaluation_api_evaluations_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EvalRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/evaluations/{eval_id}": {
+   "get": {
+    "summary": "Get Evaluation",
+    "operationId": "get_evaluation_api_evaluations__eval_id__get",
+    "parameters": [
+     {
+      "name": "eval_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Eval Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/metrics/history": {
+   "get": {
+    "summary": "Metrics History",
+    "operationId": "metrics_history_api_metrics_history_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/gates": {
+   "get": {
+    "summary": "Gates",
+    "operationId": "gates_api_gates_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/audit": {
+   "get": {
+    "summary": "Audit",
+    "operationId": "audit_api_audit_get",
+    "parameters": [
+     {
+      "name": "run_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Run Id"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 5000,
+       "default": 200,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/audit/verify": {
+   "get": {
+    "summary": "Audit Verify",
+    "operationId": "audit_verify_api_audit_verify_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "ClaimContent": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "value",
+       "derived",
+       "count",
+       "event",
+       "rule",
+       "routing",
+       "statement"
+      ],
+      "title": "Kind",
+      "description": "value=transcribed source value; derived=computed metric; count=participant count; event=adverse event; rule=stopping rule fired; routing=routing code; statement=qualitative statement backed by a quote"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text",
+      "description": "Human-readable sentence"
+     },
+     "participant_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Participant Id"
+     },
+     "cohort": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cohort"
+     },
+     "arm": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "active",
+         "placebo"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Arm"
+     },
+     "visit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit"
+     },
+     "field": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Field",
+      "description": "Analyte/vital/proteomic field or AE term"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Code",
+      "description": "Categorical value: genotype, urinalysis result, routing code"
+     },
+     "metric": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Metric",
+      "description": "For derived/count claims: x_uln, change_from_baseline, pct_change_from_baseline, arm_mean_change, arm_mean_pct_change, arm_n, count_ae_participants"
+     },
+     "rule_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Rule Id"
+     },
+     "grade": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Grade",
+      "description": "CTCAE grade (event claims) or minimum grade (count claims)"
+     },
+     "serious": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Serious"
+     },
+     "relatedness": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Relatedness"
+     },
+     "evidence": {
+      "items": {
+       "$ref": "#/components/schemas/EvidenceRef"
+      },
+      "type": "array",
+      "title": "Evidence"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "text"
+    ],
+    "title": "ClaimContent",
+    "description": "What an agent asserts. Every material finding is expressed as one of these."
+   },
+   "ClaimVerdict": {
+    "properties": {
+     "claim_id": {
+      "type": "string",
+      "title": "Claim Id"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "SUPPORTED",
+       "CONTRADICTED",
+       "UNVERIFIED"
+      ],
+      "title": "Status"
+     },
+     "human_review": {
+      "type": "boolean",
+      "title": "Human Review",
+      "default": false
+     },
+     "checks_passed": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Checks Passed"
+     },
+     "checks_failed": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Checks Failed"
+     },
+     "checks_unresolved": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Checks Unresolved"
+     },
+     "expected_value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expected Value"
+     },
+     "expected_code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expected Code"
+     },
+     "diagnosis": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Diagnosis",
+      "description": "Likely cause of a mismatch, e.g. 'unit swap (/88.57)'"
+     },
+     "reason": {
+      "type": "string",
+      "title": "Reason",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "claim_id",
+     "status"
+    ],
+    "title": "ClaimVerdict"
+   },
+   "Decision": {
+    "properties": {
+     "decision": {
+      "type": "string",
+      "enum": [
+       "uphold",
+       "confirm",
+       "override",
+       "escalate"
+      ],
+      "title": "Decision"
+     },
+     "reviewer": {
+      "type": "string",
+      "title": "Reviewer",
+      "default": "research-associate"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     },
+     "override_routing": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Override Routing"
+     }
+    },
+    "type": "object",
+    "required": [
+     "decision"
+    ],
+    "title": "Decision"
+   },
+   "EvalRequest": {
+    "properties": {
+     "backend": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "offline",
+         "openrouter",
+         "claude"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Backend"
+     },
+     "reps": {
+      "type": "integer",
+      "maximum": 50.0,
+      "minimum": 1.0,
+      "title": "Reps",
+      "default": 10
+     },
+     "participants": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Participants"
+     }
+    },
+    "type": "object",
+    "title": "EvalRequest"
+   },
+   "EvidenceRef": {
+    "properties": {
+     "record_id": {
+      "type": "string",
+      "title": "Record Id",
+      "description": "ID of an approved source record"
+     },
+     "field": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Field",
+      "description": "Field inside the record's values, if any"
+     },
+     "quote": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Quote",
+      "description": "Exact excerpt copied from the record text, if citing narrative text"
+     }
+    },
+    "type": "object",
+    "required": [
+     "record_id"
+    ],
+    "title": "EvidenceRef"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "RunRequest": {
+    "properties": {
+     "mode": {
+      "type": "string",
+      "enum": [
+       "adversarial",
+       "single_agent"
+      ],
+      "title": "Mode",
+      "default": "adversarial"
+     },
+     "backend": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "offline",
+         "openrouter",
+         "claude"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Backend"
+     },
+     "participants": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Participants"
+     },
+     "cohorts": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "integer"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cohorts"
+     },
+     "perturbation_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Perturbation Ids"
+     },
+     "max_revision_rounds": {
+      "type": "integer",
+      "maximum": 2.0,
+      "minimum": 0.0,
+      "title": "Max Revision Rounds",
+      "default": 2
+     },
+     "specialist_panel": {
+      "type": "boolean",
+      "title": "Specialist Panel",
+      "default": true
+     },
+     "label": {
+      "type": "string",
+      "title": "Label",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "title": "RunRequest"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   },
+   "VerificationReport": {
+    "properties": {
+     "verifier_version": {
+      "type": "string",
+      "title": "Verifier Version"
+     },
+     "registry_hash": {
+      "type": "string",
+      "title": "Registry Hash"
+     },
+     "verdicts": {
+      "items": {
+       "$ref": "#/components/schemas/ClaimVerdict"
+      },
+      "type": "array",
+      "title": "Verdicts"
+     },
+     "n_supported": {
+      "type": "integer",
+      "title": "N Supported",
+      "default": 0
+     },
+     "n_contradicted": {
+      "type": "integer",
+      "title": "N Contradicted",
+      "default": 0
+     },
+     "n_unverified": {
+      "type": "integer",
+      "title": "N Unverified",
+      "default": 0
+     },
+     "available": {
+      "type": "boolean",
+      "title": "Available",
+      "default": true
+     }
+    },
+    "type": "object",
+    "required": [
+     "verifier_version",
+     "registry_hash",
+     "verdicts"
+    ],
+    "title": "VerificationReport"
+   },
+   "VerifyRequest": {
+    "properties": {
+     "claims": {
+      "items": {
+       "$ref": "#/components/schemas/ClaimContent"
+      },
+      "type": "array",
+      "title": "Claims"
+     },
+     "blinded": {
+      "type": "boolean",
+      "title": "Blinded",
+      "default": true
+     }
+    },
+    "type": "object",
+    "required": [
+     "claims"
+    ],
+    "title": "VerifyRequest"
+   }
+  }
+ }
+}

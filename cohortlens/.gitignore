@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+# generated: recreate with `python -m cohortlens generate` / runs and evaluations are local artifacts
+data/
+runs/
+frontend_export/

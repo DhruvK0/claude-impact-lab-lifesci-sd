@@ -1,0 +1,144 @@
+{
+ "$defs": {
+  "RoutingCode": {
+   "enum": [
+    "R0",
+    "R1",
+    "RQ",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "title": "RoutingCode",
+   "type": "string"
+  },
+  "RuleHit": {
+   "properties": {
+    "rule_id": {
+     "title": "Rule Id",
+     "type": "string"
+    },
+    "routing": {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    "description": {
+     "title": "Description",
+     "type": "string"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "observed": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Observed"
+    },
+    "threshold": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Threshold"
+    },
+    "record_ids": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Record Ids",
+     "type": "array"
+    }
+   },
+   "required": [
+    "rule_id",
+    "routing",
+    "description"
+   ],
+   "title": "RuleHit",
+   "type": "object"
+  }
+ },
+ "properties": {
+  "participant_id": {
+   "title": "Participant Id",
+   "type": "string"
+  },
+  "cohort": {
+   "title": "Cohort",
+   "type": "integer"
+  },
+  "arm": {
+   "anyOf": [
+    {
+     "enum": [
+      "active",
+      "placebo"
+     ],
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Arm"
+  },
+  "routing": {
+   "$ref": "#/$defs/RoutingCode"
+  },
+  "rule_hits": {
+   "items": {
+    "$ref": "#/$defs/RuleHit"
+   },
+   "title": "Rule Hits",
+   "type": "array"
+  },
+  "protocol_version": {
+   "title": "Protocol Version",
+   "type": "string"
+  }
+ },
+ "required": [
+  "participant_id",
+  "cohort",
+  "routing",
+  "protocol_version"
+ ],
+ "title": "OracleResult",
+ "type": "object"
+}

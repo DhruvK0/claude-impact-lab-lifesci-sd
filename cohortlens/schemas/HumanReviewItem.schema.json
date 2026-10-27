@@ -1,0 +1,101 @@
+{
+ "properties": {
+  "item_id": {
+   "title": "Item Id",
+   "type": "string"
+  },
+  "run_id": {
+   "title": "Run Id",
+   "type": "string"
+  },
+  "subject": {
+   "title": "Subject",
+   "type": "string"
+  },
+  "participant_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Participant Id"
+  },
+  "cohort": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Cohort"
+  },
+  "routing": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Routing"
+  },
+  "reasons": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Reasons",
+   "type": "array"
+  },
+  "status": {
+   "default": "pending",
+   "enum": [
+    "pending",
+    "confirmed",
+    "overridden"
+   ],
+   "title": "Status",
+   "type": "string"
+  },
+  "reviewer_decision": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Reviewer Decision"
+  },
+  "reviewer_note": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Reviewer Note"
+  }
+ },
+ "required": [
+  "item_id",
+  "run_id",
+  "subject",
+  "reasons"
+ ],
+ "title": "HumanReviewItem",
+ "type": "object"
+}

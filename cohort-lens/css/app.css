@@ -177,3 +177,8 @@ input[type="range"] { accent-color: var(--color-accent); width: 100%; }
 
 /* ── Footer navigation ── */
 .footer-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; padding-top: 60px; }
+
+/* ── Pipeline wiring: notices, adversarial-lane notes ── */
+.notice { border-left: 3px solid var(--color-accent-2); background: var(--color-accent-2-100); color: var(--color-text); padding: 10px 14px; margin: 0 0 20px; font-size: 14px; line-height: 1.45; }
+.notice ul { margin: 6px 0 0; padding-left: 18px; }
+.adversarial-note { color: var(--color-accent-2-800); margin-top: 4px; }

@@ -1,0 +1,72 @@
+{
+ "properties": {
+  "run_id": {
+   "title": "Run Id",
+   "type": "string"
+  },
+  "seq": {
+   "title": "Seq",
+   "type": "integer"
+  },
+  "ts": {
+   "title": "Ts",
+   "type": "string"
+  },
+  "type": {
+   "enum": [
+    "run_started",
+    "stage_started",
+    "author_draft",
+    "verification",
+    "critiques",
+    "author_response",
+    "editor_decision",
+    "stage_completed",
+    "participant_routed",
+    "cohort_decided",
+    "run_completed",
+    "run_failed",
+    "log"
+   ],
+   "title": "Type",
+   "type": "string"
+  },
+  "stage": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Stage"
+  },
+  "subject": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Subject"
+  },
+  "data": {
+   "additionalProperties": true,
+   "title": "Data",
+   "type": "object"
+  }
+ },
+ "required": [
+  "run_id",
+  "seq",
+  "ts",
+  "type"
+ ],
+ "title": "PipelineEvent",
+ "type": "object"
+}
