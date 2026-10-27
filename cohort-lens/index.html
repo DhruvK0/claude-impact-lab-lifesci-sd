@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cohort Lens — Adversarial safety review for the DSMB</title>
+  <meta name="description" content="A guided five-step workflow: a primary AI agent issues cited safety verdicts per participant, a swarm of adversarial reviewers challenges them, and a research associate resolves what remains.">
+  <!-- Design tokens + base components (Broadsheet design system) -->
+  <link rel="stylesheet" href="css/broadsheet.css">
+  <!-- Page-specific layout -->
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="rule-thick-thin"></div>
+      <div class="masthead">
+        <div class="masthead-brand">
+          <span class="brand">Cohort Lens</span>
+          <span class="muted small">Adversarial safety review for the DSMB</span>
+        </div>
+        <span class="muted small">Research associate · J. Okafor</span>
+      </div>
+      <div class="rule-thin"></div>
+      <div class="dateline">
+        <strong>Study CVX-214-101</strong>
+        <span>Phase 1 · multiple ascending dose</span>
+        <span>Blood pressure &amp; triglyceride lowering</span>
+        <span>12 participants · placebo, 5, 10, 20, 40 mg</span>
+        <span>Data cut 14 Oct 2026</span>
+        <span class="synthetic">Synthetic data</span>
+      </div>
+      <div class="rule-thin-thick"></div>
+    </header>
+
+    <!-- Everything below the masthead is rendered by js/app.js -->
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <!-- Hidden file picker used by the "Browse files" button in step 1 -->
+  <input type="file" id="file-input" multiple hidden>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
