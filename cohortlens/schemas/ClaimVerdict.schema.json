@@ -1,0 +1,86 @@
+{
+ "properties": {
+  "claim_id": {
+   "title": "Claim Id",
+   "type": "string"
+  },
+  "status": {
+   "enum": [
+    "SUPPORTED",
+    "CONTRADICTED",
+    "UNVERIFIED"
+   ],
+   "title": "Status",
+   "type": "string"
+  },
+  "human_review": {
+   "default": false,
+   "title": "Human Review",
+   "type": "boolean"
+  },
+  "checks_passed": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Checks Passed",
+   "type": "array"
+  },
+  "checks_failed": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Checks Failed",
+   "type": "array"
+  },
+  "checks_unresolved": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Checks Unresolved",
+   "type": "array"
+  },
+  "expected_value": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Expected Value"
+  },
+  "expected_code": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Expected Code"
+  },
+  "diagnosis": {
+   "description": "Likely cause of a mismatch, e.g. 'unit swap (/88.57)'",
+   "items": {
+    "type": "string"
+   },
+   "title": "Diagnosis",
+   "type": "array"
+  },
+  "reason": {
+   "default": "",
+   "title": "Reason",
+   "type": "string"
+  }
+ },
+ "required": [
+  "claim_id",
+  "status"
+ ],
+ "title": "ClaimVerdict",
+ "type": "object"
+}

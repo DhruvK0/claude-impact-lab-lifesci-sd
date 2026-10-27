@@ -1,0 +1,185 @@
+/*
+ * Cohort Lens — page layout.
+ * Colors, type, spacing and the .btn / .tag / .table / .seg / .field / .cmyk-num
+ * components come from broadsheet.css. This file only adds layout for this app.
+ */
+
+body { background: var(--color-bg); }
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-600); }
+button { font-family: inherit; }
+input[type="range"] { accent-color: var(--color-accent); width: 100%; }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 30px 40px 80px; }
+@media (max-width: 640px) { .page { padding: 20px 20px 60px; } }
+
+.muted { color: var(--color-neutral-700); }
+.small { font-size: 13px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── Masthead: the only place rules print (thick-thin pairs) ── */
+.rule-thick-thin { border-top: 3px solid var(--color-text); padding-top: 2px; }
+.rule-thick-thin::after { content: ""; display: block; border-top: 1px solid var(--color-text); }
+.rule-thin-thick { border-top: 1px solid var(--color-text); padding-top: 2px; }
+.rule-thin-thick::after { content: ""; display: block; border-top: 3px solid var(--color-text); }
+.rule-thin { border-top: 1px solid var(--color-text); }
+
+.masthead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 30px; padding: 15px 0 10px; }
+.masthead-brand { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 15px; }
+.brand { font-size: 26px; font-weight: 600; letter-spacing: -0.015em; }
+.dateline { display: flex; flex-wrap: wrap; gap: 6px 30px; padding: 8px 0; font-size: 12px; color: var(--color-neutral-800); }
+.dateline strong { color: var(--color-text); }
+.synthetic { color: var(--color-accent-2-700); }
+
+/* ── Step navigation ── */
+.steps { display: flex; flex-wrap: wrap; gap: 10px 40px; padding: 20px 0 0; }
+.step-link {
+  background: none; border: 0; padding: 0 0 6px; cursor: pointer;
+  display: flex; align-items: baseline; gap: 8px;
+  color: var(--color-text); border-bottom: 2px solid transparent;
+}
+.step-link[aria-current="step"] { border-bottom-color: var(--color-accent); }
+.step-link[aria-current="step"] .step-label { font-weight: 600; }
+.step-link:disabled { color: var(--color-neutral-500); cursor: not-allowed; }
+.step-link:not(:disabled):hover .step-label { color: var(--color-accent-700); }
+.step-num { font-size: 12px; font-variant-numeric: tabular-nums; }
+.step-label { font-size: 15px; }
+.step-done { font-size: 11px; color: var(--color-accent-700); }
+
+/* ── Step header ── */
+.step-head { display: flex; gap: 30px; align-items: flex-start; padding: 50px 0 30px; }
+.step-head .cmyk-num { font-size: 96px; font-weight: 600; flex: none; }
+.kicker { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); }
+.kicker.neutral { color: var(--color-neutral-700); }
+.step-title { font-size: 42px; margin: 5px 0 10px; }
+.lede { font-size: 17px; color: var(--color-neutral-800); text-wrap: pretty; margin: 0; max-width: 660px; }
+@media (max-width: 640px) {
+  .step-head { gap: 15px; padding-top: 30px; }
+  .step-head .cmyk-num { font-size: 56px; }
+  .step-title { font-size: 30px; }
+}
+
+/* ── Two-column layout that wraps on narrow screens ── */
+.split { display: flex; flex-wrap: wrap; gap: 40px 60px; align-items: flex-start; }
+.split-main { flex: 1 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 30px; }
+.split-aside { flex: 1 1 280px; min-width: 0; max-width: 400px; }
+.sticky { position: sticky; top: 20px; }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 5px 20px; margin-bottom: 10px; }
+.section-head h4 { margin: 0; }
+.row-rule { border-top: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); }
+
+/* ── Step 1: upload + source selection ── */
+.dropzone {
+  border: 1px dashed var(--color-neutral-500); border-radius: var(--radius-md); padding: 30px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 15px;
+}
+.dropzone.is-over { border-color: var(--color-accent); background: var(--color-accent-100); }
+.dropzone-title { font-size: 18px; font-weight: 600; }
+
+.doc { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 15px; padding: 15px 0; }
+.doc-code { font-weight: 600; font-size: 12px; letter-spacing: 0.04em; padding-top: 3px; }
+.doc-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.doc-name { font-size: 15px; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip {
+  font-size: 13px; padding: 4px 10px; border-radius: var(--radius-md); cursor: pointer;
+  border: 1px solid var(--color-divider); background: transparent; color: var(--color-neutral-800);
+}
+.chip:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.chip[aria-pressed="true"] { background: var(--color-accent-100); color: var(--color-accent-800); border-color: var(--color-accent); }
+.chip[aria-pressed="true"]:hover { background: var(--color-accent-200); }
+
+.rule-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; padding: 8px 0; font-size: 14px; }
+.rule-row strong { font-variant-numeric: tabular-nums; font-size: 13px; }
+
+/* ── Step 2: verdict table + source line ── */
+.summary { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-bottom: 20px; font-size: 15px; }
+.table-wrap { overflow-x: auto; }
+.verdicts tbody tr { cursor: pointer; vertical-align: top; }
+.verdicts tbody tr.is-selected { background: var(--color-surface); }
+.verdicts .pid { font-weight: 600; font-variant-numeric: tabular-nums; }
+.verdicts .signals { font-weight: 600; font-variant-numeric: tabular-nums; }
+.verdicts .rationale { font-size: 14px; color: var(--color-neutral-800); margin-top: 2px; text-wrap: pretty; }
+.cites { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.cite {
+  font-size: 11px; padding: 2px 8px; border-radius: var(--radius-md); cursor: pointer;
+  border: 1px solid transparent; background: var(--color-neutral-200); color: var(--color-neutral-800);
+}
+.cite:hover { background: var(--color-neutral-300); }
+.cite.is-active { background: var(--color-accent-100); color: var(--color-accent-800); border-color: var(--color-accent); }
+.cite.is-mismatch { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.cite.is-mismatch.is-active { border-color: var(--color-accent-2-600); }
+
+.source-doc { font-size: 13px; color: var(--color-neutral-700); margin-top: 10px; }
+.source-loc { font-size: 20px; font-weight: 600; margin: 2px 0 12px; }
+.source-quote { font-size: 19px; font-style: italic; line-height: 1.45; text-wrap: pretty; }
+.source-status { font-size: 13px; margin-top: 15px; text-wrap: pretty; color: var(--color-neutral-700); }
+.source-status.ok { color: var(--color-accent-800); }
+.source-status.bad { color: var(--color-accent-2-800); }
+
+/* ── Step 3: swarm heatmap + reviewer notes ── */
+.heatmap-wrap { overflow-x: auto; }
+.heatmap { min-width: 620px; display: flex; flex-direction: column; gap: 4px; }
+.heat-row { display: grid; grid-template-columns: 150px repeat(12, minmax(0, 1fr)); gap: 4px; align-items: center; }
+.heat-name { font-size: 14px; }
+.heat-col { background: none; border: 0; padding: 0 0 4px; font-size: 12px; cursor: pointer; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; }
+.heat-col.is-selected { color: var(--color-text); font-weight: 600; }
+.heat-cell { height: 26px; border: 0; padding: 0; border-radius: var(--radius-sm); cursor: pointer; }
+.heat-cell.is-selected { outline: 2px solid var(--color-text); outline-offset: 1px; }
+.heat-legend { font-size: 13px; color: var(--color-neutral-700); margin-top: 10px; }
+
+.selected-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 15px; margin: 50px 0 20px; }
+.selected-head h3 { margin: 0; }
+.reviewers { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 25px 40px; }
+.reviewer-name { font-size: 15px; font-weight: 600; }
+.reviewer-vote { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.reviewer-note { font-size: 14px; text-wrap: pretty; }
+.bar { flex: 1; height: 3px; background: var(--color-neutral-300); position: relative; }
+.bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--color-neutral-700); }
+.bar.dissent > i { background: var(--color-accent-2); }
+
+/* ── Step 4: consensus score + distribution ── */
+.consensus-left { flex: 1 1 340px; min-width: 0; max-width: 460px; display: flex; flex-direction: column; gap: 12px; }
+.consensus-right { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 15px; }
+.consensus-left .cmyk-num { font-size: 128px; font-weight: 600; }
+.strip { position: relative; height: 44px; margin-top: 10px; }
+.strip-axis { position: absolute; left: 0; right: 0; top: 34px; height: 1px; background: var(--color-neutral-500); }
+.strip-dot { position: absolute; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--color-text); mix-blend-mode: multiply; }
+.strip-dot.dissent { background: var(--color-accent-2); }
+.threshold-line { position: absolute; top: 0; bottom: 4px; border-left: 1px dashed var(--color-text); }
+.axis-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; }
+.stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-size: 15px; }
+.low-note { font-size: 15px; font-style: italic; margin: 10px 0 0; text-wrap: pretty; }
+
+.hist { position: relative; display: flex; align-items: flex-end; gap: 4px; min-height: 140px; }
+.hist-bin { flex: 1; display: flex; flex-direction: column-reverse; gap: 4px; }
+.hist-item {
+  height: 30px; border: 0; padding: 0; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;
+  font-variant-numeric: tabular-nums; background: var(--color-neutral-300); color: var(--color-neutral-900);
+}
+.hist-item.is-routed { background: var(--color-accent-2-200); color: var(--color-accent-2-900); }
+.hist-item.is-selected { background: var(--color-text); color: var(--color-bg); }
+.hist .threshold-line { top: -8px; bottom: -4px; }
+
+/* ── Step 5: worklist ── */
+.work-item { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 15px; }
+.work-n { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--color-neutral-600); }
+.work-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.work-id { font-size: 22px; font-weight: 600; }
+.work-reason { font-size: 17px; margin-top: 6px; text-wrap: pretty; }
+.work-dissent { font-size: 13px; color: var(--color-neutral-700); margin-top: 4px; text-wrap: pretty; }
+.work-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.sev-high { color: var(--color-accent-2-700); font-size: 14px; }
+.sev-other { color: var(--color-neutral-800); font-size: 14px; }
+.big-count { font-size: 48px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.aside-stack { display: flex; flex-direction: column; gap: 25px; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+
+/* ── Footer navigation ── */
+.footer-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; padding-top: 60px; }
+
+/* ── Pipeline wiring: notices, adversarial-lane notes ── */
+.notice { border-left: 3px solid var(--color-accent-2); background: var(--color-accent-2-100); color: var(--color-text); padding: 10px 14px; margin: 0 0 20px; font-size: 14px; line-height: 1.45; }
+.notice ul { margin: 6px 0 0; padding-left: 18px; }
+.adversarial-note { color: var(--color-accent-2-800); margin-top: 4px; }
+.packet-json { display: block; width: 100%; box-sizing: border-box; margin-top: 8px; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-divider); padding: 8px; }

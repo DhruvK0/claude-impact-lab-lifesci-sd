@@ -1,0 +1,75 @@
+{
+ "properties": {
+  "run_id": {
+   "title": "Run Id",
+   "type": "string"
+  },
+  "status": {
+   "title": "Status",
+   "type": "string"
+  },
+  "mode": {
+   "title": "Mode",
+   "type": "string"
+  },
+  "backend": {
+   "title": "Backend",
+   "type": "string"
+  },
+  "label": {
+   "title": "Label",
+   "type": "string"
+  },
+  "started_at": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Started At"
+  },
+  "finished_at": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Finished At"
+  },
+  "n_participants": {
+   "title": "N Participants",
+   "type": "integer"
+  },
+  "routing_counts": {
+   "additionalProperties": {
+    "type": "integer"
+   },
+   "title": "Routing Counts",
+   "type": "object"
+  },
+  "human_review_items": {
+   "title": "Human Review Items",
+   "type": "integer"
+  }
+ },
+ "required": [
+  "run_id",
+  "status",
+  "mode",
+  "backend",
+  "label",
+  "started_at",
+  "finished_at",
+  "n_participants",
+  "routing_counts",
+  "human_review_items"
+ ],
+ "title": "RunSummary",
+ "type": "object"
+}

@@ -1,0 +1,1147 @@
+[
+ {
+  "label": "SUPPORTED",
+  "category": "correct_value",
+  "claim": {
+   "kind": "value",
+   "text": "correct_value",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 168.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-001",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_value",
+  "claim": {
+   "kind": "value",
+   "text": "correct_value",
+   "participant_id": "P-1042",
+   "cohort": null,
+   "arm": null,
+   "visit": "V4",
+   "field": "qtcf",
+   "value": 506.0,
+   "unit": "ms",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "VIT-P-1042-V4",
+     "field": "qtcf",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-002",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_derived",
+  "claim": {
+   "kind": "derived",
+   "text": "correct_derived",
+   "participant_id": "P-1024",
+   "cohort": null,
+   "arm": null,
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": -25.0,
+   "unit": null,
+   "code": null,
+   "metric": "pct_change_from_baseline",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1024-V2",
+     "field": null,
+     "quote": null
+    },
+    {
+     "record_id": "LAB-P-1024-V6",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-003",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_arm_mean",
+  "claim": {
+   "kind": "derived",
+   "text": "correct_arm_mean",
+   "participant_id": null,
+   "cohort": 5,
+   "arm": "active",
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": -38.9,
+   "unit": null,
+   "code": null,
+   "metric": "arm_mean_pct_change",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "ARM-P-1041",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-004",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_x_uln",
+  "claim": {
+   "kind": "derived",
+   "text": "correct_x_uln",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 4.2,
+   "unit": null,
+   "code": null,
+   "metric": "x_uln",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-005",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_event",
+  "claim": {
+   "kind": "event",
+   "text": "correct_event",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": "Drug-induced liver injury",
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": 3,
+   "serious": true,
+   "relatedness": "probably related",
+   "evidence": [
+    {
+     "record_id": "AE-P-1041-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-006",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_rule",
+  "claim": {
+   "kind": "rule",
+   "text": "correct_rule",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": "HEP-HYS",
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-007",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_routing",
+  "claim": {
+   "kind": "routing",
+   "text": "correct_routing",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": "R4",
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "AE-P-1041-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-008",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_count",
+  "claim": {
+   "kind": "count",
+   "text": "correct_count",
+   "participant_id": null,
+   "cohort": 5,
+   "arm": "active",
+   "visit": null,
+   "field": null,
+   "value": 2.0,
+   "unit": null,
+   "code": null,
+   "metric": "count_ae_participants",
+   "rule_id": null,
+   "grade": 3,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "AE-P-1041-01",
+     "field": null,
+     "quote": null
+    },
+    {
+     "record_id": "AE-P-1042-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-009",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "quote_backed_statement",
+  "claim": {
+   "kind": "statement",
+   "text": "quote_backed_statement",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "PATH-P-1041-V5U",
+     "field": null,
+     "quote": "hepatocellular injury with hyperbilirubinemia"
+    }
+   ],
+   "claim_id": "G-010",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_genotype",
+  "claim": {
+   "kind": "value",
+   "text": "correct_genotype",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V1",
+   "field": "apoe",
+   "value": null,
+   "unit": null,
+   "code": "e3/e3",
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "GEN-P-1041",
+     "field": "apoe",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-011",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_unit_conversion",
+  "claim": {
+   "kind": "value",
+   "text": "correct_unit_conversion",
+   "participant_id": "P-1001",
+   "cohort": null,
+   "arm": null,
+   "visit": "V3",
+   "field": "triglycerides",
+   "value": 434.0,
+   "unit": "mg/dL",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1001-V3",
+     "field": "triglycerides",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-012",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "SUPPORTED",
+  "category": "correct_missing",
+  "claim": {
+   "kind": "value",
+   "text": "correct_missing",
+   "participant_id": "P-1012",
+   "cohort": null,
+   "arm": null,
+   "visit": "V4",
+   "field": "potassium",
+   "value": null,
+   "unit": "mmol/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1012-V4",
+     "field": "potassium",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-013",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "fabricated_statistic",
+  "claim": {
+   "kind": "derived",
+   "text": "fabricated_statistic",
+   "participant_id": "P-1024",
+   "cohort": null,
+   "arm": null,
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": -45.0,
+   "unit": null,
+   "code": null,
+   "metric": "pct_change_from_baseline",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1024-V6",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-014",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_visit",
+  "claim": {
+   "kind": "value",
+   "text": "wrong_visit",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V4",
+   "field": "alt",
+   "value": 168.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V4",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-015",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "cross_participant_value",
+  "claim": {
+   "kind": "value",
+   "text": "cross_participant_value",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 14.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-016",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "cross_participant_citation",
+  "claim": {
+   "kind": "value",
+   "text": "cross_participant_citation",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 14.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1002-V5",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-017",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "unit_swap",
+  "claim": {
+   "kind": "value",
+   "text": "unit_swap",
+   "participant_id": "P-1024",
+   "cohort": null,
+   "arm": null,
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": 3.12,
+   "unit": "mg/dL",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1024-V6",
+     "field": "triglycerides",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-018",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "decimal_shift",
+  "claim": {
+   "kind": "value",
+   "text": "decimal_shift",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "total_bilirubin",
+   "value": 0.31,
+   "unit": "mg/dL",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": "total_bilirubin",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-019",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_direction",
+  "claim": {
+   "kind": "derived",
+   "text": "wrong_direction",
+   "participant_id": "P-1024",
+   "cohort": null,
+   "arm": null,
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": 25.0,
+   "unit": null,
+   "code": null,
+   "metric": "pct_change_from_baseline",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1024-V6",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-020",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "absolute_as_percent",
+  "claim": {
+   "kind": "derived",
+   "text": "absolute_as_percent",
+   "participant_id": "P-1024",
+   "cohort": null,
+   "arm": null,
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": -92.0,
+   "unit": null,
+   "code": null,
+   "metric": "pct_change_from_baseline",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1024-V6",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-021",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_cohort_mean",
+  "claim": {
+   "kind": "derived",
+   "text": "wrong_cohort_mean",
+   "participant_id": null,
+   "cohort": 5,
+   "arm": "active",
+   "visit": "V6",
+   "field": "triglycerides",
+   "value": -13.5,
+   "unit": null,
+   "code": null,
+   "metric": "arm_mean_pct_change",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "ARM-P-1041",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-022",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_ae_grade",
+  "claim": {
+   "kind": "event",
+   "text": "wrong_ae_grade",
+   "participant_id": "P-1043",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": "Hypotension",
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": 3,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "AE-P-1043-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-023",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_causality",
+  "claim": {
+   "kind": "event",
+   "text": "wrong_causality",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": "Drug-induced liver injury",
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": "not related",
+   "evidence": [
+    {
+     "record_id": "AE-P-1041-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-024",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "fabricated_event",
+  "claim": {
+   "kind": "event",
+   "text": "fabricated_event",
+   "participant_id": "P-1045",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": "Pancreatitis",
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": 3,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "AE-P-1045-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-025",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "fabricated_citation",
+  "claim": {
+   "kind": "value",
+   "text": "fabricated_citation",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 168.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1099-V5",
+     "field": "alt",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-026",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "rule_not_met",
+  "claim": {
+   "kind": "rule",
+   "text": "rule_not_met",
+   "participant_id": "P-1021",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": "QTC-500",
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "VIT-P-1021-V6",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-027",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "invented_rule",
+  "claim": {
+   "kind": "rule",
+   "text": "invented_rule",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": "HEP-10X",
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-028",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "wrong_routing",
+  "claim": {
+   "kind": "routing",
+   "text": "wrong_routing",
+   "participant_id": "P-1043",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": "R0",
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "VIT-P-1043-V4",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-029",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "fabricated_quote",
+  "claim": {
+   "kind": "statement",
+   "text": "fabricated_quote",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "PATH-P-1041-V5U",
+     "field": null,
+     "quote": "biopsy confirms drug-induced cholestasis"
+    }
+   ],
+   "claim_id": "G-030",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "placebo_counted_as_active",
+  "claim": {
+   "kind": "count",
+   "text": "placebo_counted_as_active",
+   "participant_id": null,
+   "cohort": 2,
+   "arm": "active",
+   "visit": null,
+   "field": null,
+   "value": 1.0,
+   "unit": null,
+   "code": null,
+   "metric": "count_ae_participants",
+   "rule_id": null,
+   "grade": 3,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "AE-P-1018-01",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-031",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "CONTRADICTED",
+  "category": "invented_missing_value",
+  "claim": {
+   "kind": "value",
+   "text": "invented_missing_value",
+   "participant_id": "P-1012",
+   "cohort": null,
+   "arm": null,
+   "visit": "V4",
+   "field": "potassium",
+   "value": 4.3,
+   "unit": "mmol/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1012-V4",
+     "field": "potassium",
+     "quote": null
+    }
+   ],
+   "claim_id": "G-032",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "UNVERIFIED",
+  "category": "no_citation",
+  "claim": {
+   "kind": "value",
+   "text": "no_citation",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "alt",
+   "value": 168.0,
+   "unit": "U/L",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [],
+   "claim_id": "G-033",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "UNVERIFIED",
+  "category": "unsupported_metric",
+  "claim": {
+   "kind": "derived",
+   "text": "unsupported_metric",
+   "participant_id": null,
+   "cohort": 5,
+   "arm": "active",
+   "visit": null,
+   "field": "triglycerides",
+   "value": 0.62,
+   "unit": null,
+   "code": null,
+   "metric": "hazard_ratio",
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "ARM-P-1041",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-034",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "UNVERIFIED",
+  "category": "statement_without_quote",
+  "claim": {
+   "kind": "statement",
+   "text": "CVX-214 is hepatotoxic in humans.",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-035",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "UNVERIFIED",
+  "category": "field_not_in_corpus",
+  "claim": {
+   "kind": "value",
+   "text": "field_not_in_corpus",
+   "participant_id": "P-1041",
+   "cohort": null,
+   "arm": null,
+   "visit": "V5",
+   "field": "apob",
+   "value": 95.0,
+   "unit": "mg/dL",
+   "code": null,
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [
+    {
+     "record_id": "LAB-P-1041-V5",
+     "field": null,
+     "quote": null
+    }
+   ],
+   "claim_id": "G-036",
+   "author_id": "",
+   "stage": ""
+  }
+ },
+ {
+  "label": "UNVERIFIED",
+  "category": "routing_without_evidence",
+  "claim": {
+   "kind": "routing",
+   "text": "routing_without_evidence",
+   "participant_id": "P-1042",
+   "cohort": null,
+   "arm": null,
+   "visit": null,
+   "field": null,
+   "value": null,
+   "unit": null,
+   "code": "R3",
+   "metric": null,
+   "rule_id": null,
+   "grade": null,
+   "serious": null,
+   "relatedness": null,
+   "evidence": [],
+   "claim_id": "G-037",
+   "author_id": "",
+   "stage": ""
+  }
+ }
+]

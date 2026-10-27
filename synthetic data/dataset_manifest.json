@@ -1,0 +1,20 @@
+{
+ "dataset_id": "cvx214-synthetic-s20261026",
+ "seed": 20261026,
+ "protocol_id": "CVX-214-101",
+ "protocol_version": "1.0.0",
+ "generated_at": "2026-10-27T03:16:31+00:00",
+ "n_participants": 50,
+ "n_records": 1217,
+ "records_by_stream": {
+  "labs": 400,
+  "vitals_ecg": 400,
+  "proteomics": 150,
+  "genomics": 50,
+  "pathology": 101,
+  "ae_meds": 66,
+  "treatment_arm": 50
+ },
+ "content_hash": "73825e439f7823c4adefe7bebb44df037b7f2aee41333d3dca21228b3b6a74be",
+ "synthetic": true
+}

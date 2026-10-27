@@ -1,0 +1,85 @@
+{
+  "_comment": "Seat models. 'openrouter' (default when OPENROUTER_API_KEY is set) runs every seat on default_model unless openrouter.agents overrides a seat; model_map translates model names used by perturbations (A3 model swap). 'agents' holds per-seat effort for all LLM backends and the models used by the direct Anthropic backend (COHORTLENS_BACKEND=claude). The architecture asks for diverse reviewer models in S3: add openrouter.agents overrides for clinical_safety / statistical / protocol_compliance to restore that.",
+  "default": {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+  },
+  "agents": {
+    "cra": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "sdv_reviewer": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_labs": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_vitals_ecg": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_pathology": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_proteomics": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_genomics": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "spec_ae_meds": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "data_manager": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "narrative_reviewer": {
+      "model": "claude-opus-5-5",
+      "effort": "medium"
+    },
+    "dsmb_chair": {
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    },
+    "clinical_safety": {
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    },
+    "statistical": {
+      "model": "claude-sonnet-5-5",
+      "effort": "high"
+    },
+    "protocol_compliance": {
+      "model": "claude-haiku-5-5",
+      "effort": "high"
+    },
+    "single_agent": {
+      "model": "claude-opus-5-5",
+      "effort": "high"
+    }
+  },
+  "max_tokens": 16000,
+  "server_side_fallback_models": [
+    "claude-opus-5-5",
+    "claude-sonnet-5-5"
+  ],
+  "openrouter": {
+    "default_model": "qwen/qwen3.7-plus",
+    "agents": {},
+    "fallback_models": [
+      "qwen/qwen3.6-plus"
+    ],
+    "model_map": {
+      "claude-haiku-5-5": "qwen/qwen3.6-plus"
+    },
+    "timeout_s": 600
+  }
+}

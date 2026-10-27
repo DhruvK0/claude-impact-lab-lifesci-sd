@@ -1,0 +1,290 @@
+{
+ "$defs": {
+  "ClaimVerdict": {
+   "properties": {
+    "claim_id": {
+     "title": "Claim Id",
+     "type": "string"
+    },
+    "status": {
+     "enum": [
+      "SUPPORTED",
+      "CONTRADICTED",
+      "UNVERIFIED"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "human_review": {
+     "default": false,
+     "title": "Human Review",
+     "type": "boolean"
+    },
+    "checks_passed": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Passed",
+     "type": "array"
+    },
+    "checks_failed": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Failed",
+     "type": "array"
+    },
+    "checks_unresolved": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Unresolved",
+     "type": "array"
+    },
+    "expected_value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Expected Value"
+    },
+    "expected_code": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Expected Code"
+    },
+    "diagnosis": {
+     "description": "Likely cause of a mismatch, e.g. 'unit swap (/88.57)'",
+     "items": {
+      "type": "string"
+     },
+     "title": "Diagnosis",
+     "type": "array"
+    },
+    "reason": {
+     "default": "",
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "claim_id",
+    "status"
+   ],
+   "title": "ClaimVerdict",
+   "type": "object"
+  },
+  "EvidenceRef": {
+   "properties": {
+    "record_id": {
+     "description": "ID of an approved source record",
+     "title": "Record Id",
+     "type": "string"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Field inside the record's values, if any",
+     "title": "Field"
+    },
+    "quote": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Exact excerpt copied from the record text, if citing narrative text",
+     "title": "Quote"
+    }
+   },
+   "required": [
+    "record_id"
+   ],
+   "title": "EvidenceRef",
+   "type": "object"
+  },
+  "RoutingCode": {
+   "enum": [
+    "R0",
+    "R1",
+    "RQ",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "title": "RoutingCode",
+   "type": "string"
+  }
+ },
+ "properties": {
+  "target_claim_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Target Claim Id"
+  },
+  "target_record_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Target Record Id"
+  },
+  "target_field": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Target Field"
+  },
+  "target_visit": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Target Visit"
+  },
+  "severity": {
+   "enum": [
+    "minor",
+    "major",
+    "critical"
+   ],
+   "title": "Severity",
+   "type": "string"
+  },
+  "category": {
+   "description": "e.g. value_mismatch, unit_error, missing_data, temporal, identity, rule_missed, overclaim, blinding",
+   "title": "Category",
+   "type": "string"
+  },
+  "assertion": {
+   "title": "Assertion",
+   "type": "string"
+  },
+  "proposed_value": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Proposed Value"
+  },
+  "proposed_unit": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Proposed Unit"
+  },
+  "proposed_routing": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "evidence": {
+   "items": {
+    "$ref": "#/$defs/EvidenceRef"
+   },
+   "title": "Evidence",
+   "type": "array"
+  },
+  "critique_id": {
+   "title": "Critique Id",
+   "type": "string"
+  },
+  "reviewer_id": {
+   "title": "Reviewer Id",
+   "type": "string"
+  },
+  "reviewer_name": {
+   "title": "Reviewer Name",
+   "type": "string"
+  },
+  "planted": {
+   "default": false,
+   "title": "Planted",
+   "type": "boolean"
+  },
+  "verdict": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/ClaimVerdict"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  }
+ },
+ "required": [
+  "severity",
+  "category",
+  "assertion",
+  "critique_id",
+  "reviewer_id",
+  "reviewer_name"
+ ],
+ "title": "Critique",
+ "type": "object"
+}
