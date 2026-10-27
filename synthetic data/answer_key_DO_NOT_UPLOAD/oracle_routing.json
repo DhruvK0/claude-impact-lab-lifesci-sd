@@ -1,0 +1,284 @@
+{
+ "P-1001": {
+  "routing": "RQ",
+  "arm": "active",
+  "rules": [
+   "DQ-UNIT"
+  ]
+ },
+ "P-1002": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1003": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1004": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1005": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1006": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1007": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1008": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1009": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1010": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1011": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1012": {
+  "routing": "RQ",
+  "arm": "active",
+  "rules": [
+   "DQ-MISSING"
+  ]
+ },
+ "P-1013": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1014": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1015": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1016": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1017": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1018": {
+  "routing": "R2",
+  "arm": "placebo",
+  "rules": [
+   "AE-G3",
+   "CK-5X"
+  ]
+ },
+ "P-1019": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1020": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1021": {
+  "routing": "R1",
+  "arm": "active",
+  "rules": [
+   "QTC-D30"
+  ]
+ },
+ "P-1022": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1023": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1024": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1025": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1026": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1027": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1028": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1029": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1030": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1031": {
+  "routing": "R1",
+  "arm": "active",
+  "rules": [
+   "HEP-2X"
+  ]
+ },
+ "P-1032": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1033": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1034": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1035": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1036": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1037": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1038": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1039": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1040": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1041": {
+  "routing": "R4",
+  "arm": "active",
+  "rules": [
+   "AE-G3",
+   "HEP-3X",
+   "HEP-HYS",
+   "SAE-REL"
+  ]
+ },
+ "P-1042": {
+  "routing": "R3",
+  "arm": "active",
+  "rules": [
+   "AE-G3",
+   "QTC-500",
+   "QTC-D30",
+   "QTC-D60"
+  ]
+ },
+ "P-1043": {
+  "routing": "R2",
+  "arm": "active",
+  "rules": [
+   "AE-G2-REL",
+   "BP-DROP",
+   "BP-LOW"
+  ]
+ },
+ "P-1044": {
+  "routing": "R2",
+  "arm": "active",
+  "rules": [
+   "AE-G2-REL",
+   "HEP-2X",
+   "HEP-3X"
+  ]
+ },
+ "P-1045": {
+  "routing": "R2",
+  "arm": "active",
+  "rules": [
+   "AE-G2-REL",
+   "LIP-3X"
+  ]
+ },
+ "P-1046": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1047": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1048": {
+  "routing": "R0",
+  "arm": "placebo",
+  "rules": []
+ },
+ "P-1049": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ },
+ "P-1050": {
+  "routing": "R0",
+  "arm": "active",
+  "rules": []
+ }
+}

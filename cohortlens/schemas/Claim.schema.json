@@ -1,0 +1,257 @@
+{
+ "$defs": {
+  "EvidenceRef": {
+   "properties": {
+    "record_id": {
+     "description": "ID of an approved source record",
+     "title": "Record Id",
+     "type": "string"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Field inside the record's values, if any",
+     "title": "Field"
+    },
+    "quote": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Exact excerpt copied from the record text, if citing narrative text",
+     "title": "Quote"
+    }
+   },
+   "required": [
+    "record_id"
+   ],
+   "title": "EvidenceRef",
+   "type": "object"
+  }
+ },
+ "properties": {
+  "kind": {
+   "description": "value=transcribed source value; derived=computed metric; count=participant count; event=adverse event; rule=stopping rule fired; routing=routing code; statement=qualitative statement backed by a quote",
+   "enum": [
+    "value",
+    "derived",
+    "count",
+    "event",
+    "rule",
+    "routing",
+    "statement"
+   ],
+   "title": "Kind",
+   "type": "string"
+  },
+  "text": {
+   "description": "Human-readable sentence",
+   "title": "Text",
+   "type": "string"
+  },
+  "participant_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Participant Id"
+  },
+  "cohort": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Cohort"
+  },
+  "arm": {
+   "anyOf": [
+    {
+     "enum": [
+      "active",
+      "placebo"
+     ],
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Arm"
+  },
+  "visit": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Visit"
+  },
+  "field": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "Analyte/vital/proteomic field or AE term",
+   "title": "Field"
+  },
+  "value": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Value"
+  },
+  "unit": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Unit"
+  },
+  "code": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "Categorical value: genotype, urinalysis result, routing code",
+   "title": "Code"
+  },
+  "metric": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "For derived/count claims: x_uln, change_from_baseline, pct_change_from_baseline, arm_mean_change, arm_mean_pct_change, arm_n, count_ae_participants",
+   "title": "Metric"
+  },
+  "rule_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Rule Id"
+  },
+  "grade": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "description": "CTCAE grade (event claims) or minimum grade (count claims)",
+   "title": "Grade"
+  },
+  "serious": {
+   "anyOf": [
+    {
+     "type": "boolean"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Serious"
+  },
+  "relatedness": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Relatedness"
+  },
+  "evidence": {
+   "items": {
+    "$ref": "#/$defs/EvidenceRef"
+   },
+   "title": "Evidence",
+   "type": "array"
+  },
+  "claim_id": {
+   "title": "Claim Id",
+   "type": "string"
+  },
+  "author_id": {
+   "default": "",
+   "title": "Author Id",
+   "type": "string"
+  },
+  "stage": {
+   "default": "",
+   "title": "Stage",
+   "type": "string"
+  }
+ },
+ "required": [
+  "kind",
+  "text",
+  "claim_id"
+ ],
+ "title": "Claim",
+ "type": "object"
+}

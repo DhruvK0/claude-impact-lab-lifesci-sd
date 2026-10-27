@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "seq": {
+   "title": "Seq",
+   "type": "integer"
+  },
+  "ts": {
+   "title": "Ts",
+   "type": "string"
+  },
+  "run_id": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "title": "Run Id"
+  },
+  "event": {
+   "title": "Event",
+   "type": "string"
+  },
+  "payload_hash": {
+   "title": "Payload Hash",
+   "type": "string"
+  },
+  "payload": {
+   "additionalProperties": true,
+   "title": "Payload",
+   "type": "object"
+  },
+  "prev_hash": {
+   "title": "Prev Hash",
+   "type": "string"
+  },
+  "hash": {
+   "title": "Hash",
+   "type": "string"
+  }
+ },
+ "required": [
+  "seq",
+  "ts",
+  "run_id",
+  "event",
+  "payload_hash",
+  "prev_hash",
+  "hash"
+ ],
+ "title": "AuditEntry",
+ "type": "object"
+}

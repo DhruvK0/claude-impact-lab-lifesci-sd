@@ -1,0 +1,227 @@
+{
+ "$defs": {
+  "CohortDecisionCode": {
+   "enum": [
+    "ESCALATE",
+    "REPEAT_DOSE",
+    "DE_ESCALATE",
+    "R5_PAUSE"
+   ],
+   "title": "CohortDecisionCode",
+   "type": "string"
+  },
+  "Perturbation": {
+   "properties": {
+    "perturbation_id": {
+     "title": "Perturbation Id",
+     "type": "string"
+    },
+    "lane": {
+     "enum": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6"
+     ],
+     "title": "Lane",
+     "type": "string"
+    },
+    "kind": {
+     "title": "Kind",
+     "type": "string"
+    },
+    "target": {
+     "enum": [
+      "input_view",
+      "source_truth",
+      "agent_context",
+      "reviewers",
+      "model",
+      "verifier"
+     ],
+     "title": "Target",
+     "type": "string"
+    },
+    "participant_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Participant Id"
+    },
+    "cohort": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cohort"
+    },
+    "record_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Record Id"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "params": {
+     "additionalProperties": true,
+     "title": "Params",
+     "type": "object"
+    },
+    "description": {
+     "default": "",
+     "title": "Description",
+     "type": "string"
+    },
+    "expected_class": {
+     "enum": [
+      "MUST_DETECT",
+      "MUST_CHANGE",
+      "INVARIANT",
+      "MUST_RESIST"
+     ],
+     "title": "Expected Class",
+     "type": "string"
+    },
+    "expected_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "expected_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "clean_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "clean_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "requires_llm": {
+     "default": false,
+     "title": "Requires Llm",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "perturbation_id",
+    "lane",
+    "kind",
+    "target",
+    "expected_class"
+   ],
+   "title": "Perturbation",
+   "type": "object"
+  },
+  "RoutingCode": {
+   "enum": [
+    "R0",
+    "R1",
+    "RQ",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "title": "RoutingCode",
+   "type": "string"
+  }
+ },
+ "properties": {
+  "manifest_id": {
+   "title": "Manifest Id",
+   "type": "string"
+  },
+  "created_at": {
+   "title": "Created At",
+   "type": "string"
+  },
+  "dataset_hash": {
+   "title": "Dataset Hash",
+   "type": "string"
+  },
+  "protocol_version": {
+   "title": "Protocol Version",
+   "type": "string"
+  },
+  "perturbations": {
+   "items": {
+    "$ref": "#/$defs/Perturbation"
+   },
+   "title": "Perturbations",
+   "type": "array"
+  },
+  "manifest_hash": {
+   "default": "",
+   "title": "Manifest Hash",
+   "type": "string"
+  }
+ },
+ "required": [
+  "manifest_id",
+  "created_at",
+  "dataset_hash",
+  "protocol_version",
+  "perturbations"
+ ],
+ "title": "PerturbationManifest",
+ "type": "object"
+}

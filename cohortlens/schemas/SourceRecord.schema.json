@@ -1,0 +1,131 @@
+{
+ "description": "One approved source document. The registry of these is the source of truth.",
+ "properties": {
+  "record_id": {
+   "title": "Record Id",
+   "type": "string"
+  },
+  "participant_id": {
+   "title": "Participant Id",
+   "type": "string"
+  },
+  "cohort": {
+   "title": "Cohort",
+   "type": "integer"
+  },
+  "stream": {
+   "enum": [
+    "labs",
+    "vitals_ecg",
+    "pathology",
+    "proteomics",
+    "genomics",
+    "ae_meds",
+    "treatment_arm"
+   ],
+   "title": "Stream",
+   "type": "string"
+  },
+  "doc_type": {
+   "title": "Doc Type",
+   "type": "string"
+  },
+  "visit": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Visit"
+  },
+  "visit_day": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Visit Day"
+  },
+  "date": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Date"
+  },
+  "values": {
+   "additionalProperties": {
+    "anyOf": [
+     {
+      "type": "number"
+     },
+     {
+      "type": "integer"
+     },
+     {
+      "type": "string"
+     },
+     {
+      "type": "boolean"
+     },
+     {
+      "type": "null"
+     }
+    ]
+   },
+   "title": "Values",
+   "type": "object"
+  },
+  "units": {
+   "additionalProperties": {
+    "type": "string"
+   },
+   "title": "Units",
+   "type": "object"
+  },
+  "text": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Text"
+  },
+  "restricted": {
+   "default": false,
+   "title": "Restricted",
+   "type": "boolean"
+  },
+  "content_hash": {
+   "default": "",
+   "title": "Content Hash",
+   "type": "string"
+  }
+ },
+ "required": [
+  "record_id",
+  "participant_id",
+  "cohort",
+  "stream",
+  "doc_type"
+ ],
+ "title": "SourceRecord",
+ "type": "object"
+}

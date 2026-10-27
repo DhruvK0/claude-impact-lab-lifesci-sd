@@ -1,0 +1,1997 @@
+{
+ "$defs": {
+  "AEEntry": {
+   "properties": {
+    "record_id": {
+     "title": "Record Id",
+     "type": "string"
+    },
+    "term": {
+     "title": "Term",
+     "type": "string"
+    },
+    "grade": {
+     "title": "Grade",
+     "type": "integer"
+    },
+    "serious": {
+     "title": "Serious",
+     "type": "boolean"
+    },
+    "relatedness": {
+     "title": "Relatedness",
+     "type": "string"
+    },
+    "onset_day": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Onset Day"
+    },
+    "action_taken": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Action Taken"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    }
+   },
+   "required": [
+    "record_id",
+    "term",
+    "grade",
+    "serious",
+    "relatedness"
+   ],
+   "title": "AEEntry",
+   "type": "object"
+  },
+  "AuthorDraft": {
+   "properties": {
+    "author_id": {
+     "title": "Author Id",
+     "type": "string"
+    },
+    "summary": {
+     "default": "",
+     "title": "Summary",
+     "type": "string"
+    },
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/Claim"
+     },
+     "title": "Claims",
+     "type": "array"
+    },
+    "proposed_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "proposed_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "data_queries": {
+     "items": {
+      "$ref": "#/$defs/DataQuery"
+     },
+     "title": "Data Queries",
+     "type": "array"
+    }
+   },
+   "required": [
+    "author_id"
+   ],
+   "title": "AuthorDraft",
+   "type": "object"
+  },
+  "AuthorResponse": {
+   "properties": {
+    "author_id": {
+     "title": "Author Id",
+     "type": "string"
+    },
+    "items": {
+     "items": {
+      "$ref": "#/$defs/ResponseItem"
+     },
+     "title": "Items",
+     "type": "array"
+    },
+    "revised_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "revised_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "author_id"
+   ],
+   "title": "AuthorResponse",
+   "type": "object"
+  },
+  "CaseRecord": {
+   "properties": {
+    "participant_id": {
+     "title": "Participant Id",
+     "type": "string"
+    },
+    "cohort": {
+     "title": "Cohort",
+     "type": "integer"
+    },
+    "dose_level_mg": {
+     "title": "Dose Level Mg",
+     "type": "integer"
+    },
+    "blinded": {
+     "default": true,
+     "title": "Blinded",
+     "type": "boolean"
+    },
+    "arm": {
+     "anyOf": [
+      {
+       "enum": [
+        "active",
+        "placebo"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Arm"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/VisitEntry"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "adverse_events": {
+     "items": {
+      "$ref": "#/$defs/AEEntry"
+     },
+     "title": "Adverse Events",
+     "type": "array"
+    },
+    "con_meds": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Con Meds",
+     "type": "array"
+    },
+    "genomics": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "title": "Genomics",
+     "type": "object"
+    },
+    "pathology": {
+     "items": {
+      "$ref": "#/$defs/Observation"
+     },
+     "title": "Pathology",
+     "type": "array"
+    },
+    "data_queries": {
+     "items": {
+      "$ref": "#/$defs/DataQuery"
+     },
+     "title": "Data Queries",
+     "type": "array"
+    },
+    "narrative": {
+     "default": "",
+     "title": "Narrative",
+     "type": "string"
+    },
+    "locked": {
+     "default": false,
+     "title": "Locked",
+     "type": "boolean"
+    },
+    "lock_hash": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Lock Hash"
+    }
+   },
+   "required": [
+    "participant_id",
+    "cohort",
+    "dose_level_mg"
+   ],
+   "title": "CaseRecord",
+   "type": "object"
+  },
+  "Claim": {
+   "properties": {
+    "kind": {
+     "description": "value=transcribed source value; derived=computed metric; count=participant count; event=adverse event; rule=stopping rule fired; routing=routing code; statement=qualitative statement backed by a quote",
+     "enum": [
+      "value",
+      "derived",
+      "count",
+      "event",
+      "rule",
+      "routing",
+      "statement"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "text": {
+     "description": "Human-readable sentence",
+     "title": "Text",
+     "type": "string"
+    },
+    "participant_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Participant Id"
+    },
+    "cohort": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cohort"
+    },
+    "arm": {
+     "anyOf": [
+      {
+       "enum": [
+        "active",
+        "placebo"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Arm"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Analyte/vital/proteomic field or AE term",
+     "title": "Field"
+    },
+    "value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Value"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    },
+    "code": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Categorical value: genotype, urinalysis result, routing code",
+     "title": "Code"
+    },
+    "metric": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "For derived/count claims: x_uln, change_from_baseline, pct_change_from_baseline, arm_mean_change, arm_mean_pct_change, arm_n, count_ae_participants",
+     "title": "Metric"
+    },
+    "rule_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Rule Id"
+    },
+    "grade": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "CTCAE grade (event claims) or minimum grade (count claims)",
+     "title": "Grade"
+    },
+    "serious": {
+     "anyOf": [
+      {
+       "type": "boolean"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Serious"
+    },
+    "relatedness": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Relatedness"
+    },
+    "evidence": {
+     "items": {
+      "$ref": "#/$defs/EvidenceRef"
+     },
+     "title": "Evidence",
+     "type": "array"
+    },
+    "claim_id": {
+     "title": "Claim Id",
+     "type": "string"
+    },
+    "author_id": {
+     "default": "",
+     "title": "Author Id",
+     "type": "string"
+    },
+    "stage": {
+     "default": "",
+     "title": "Stage",
+     "type": "string"
+    }
+   },
+   "required": [
+    "kind",
+    "text",
+    "claim_id"
+   ],
+   "title": "Claim",
+   "type": "object"
+  },
+  "ClaimVerdict": {
+   "properties": {
+    "claim_id": {
+     "title": "Claim Id",
+     "type": "string"
+    },
+    "status": {
+     "enum": [
+      "SUPPORTED",
+      "CONTRADICTED",
+      "UNVERIFIED"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "human_review": {
+     "default": false,
+     "title": "Human Review",
+     "type": "boolean"
+    },
+    "checks_passed": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Passed",
+     "type": "array"
+    },
+    "checks_failed": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Failed",
+     "type": "array"
+    },
+    "checks_unresolved": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Checks Unresolved",
+     "type": "array"
+    },
+    "expected_value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Expected Value"
+    },
+    "expected_code": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Expected Code"
+    },
+    "diagnosis": {
+     "description": "Likely cause of a mismatch, e.g. 'unit swap (/88.57)'",
+     "items": {
+      "type": "string"
+     },
+     "title": "Diagnosis",
+     "type": "array"
+    },
+    "reason": {
+     "default": "",
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "claim_id",
+    "status"
+   ],
+   "title": "ClaimVerdict",
+   "type": "object"
+  },
+  "CohortDecisionCode": {
+   "enum": [
+    "ESCALATE",
+    "REPEAT_DOSE",
+    "DE_ESCALATE",
+    "R5_PAUSE"
+   ],
+   "title": "CohortDecisionCode",
+   "type": "string"
+  },
+  "CohortResult": {
+   "properties": {
+    "cohort": {
+     "title": "Cohort",
+     "type": "integer"
+    },
+    "dose_mg": {
+     "title": "Dose Mg",
+     "type": "integer"
+    },
+    "stage": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/StageResult"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "agent_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "oracle_decision": {
+     "$ref": "#/$defs/CohortDecisionCode"
+    },
+    "final_decision": {
+     "$ref": "#/$defs/CohortDecisionCode"
+    },
+    "human_review": {
+     "default": false,
+     "title": "Human Review",
+     "type": "boolean"
+    },
+    "human_review_reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Human Review Reasons",
+     "type": "array"
+    },
+    "efficacy": {
+     "items": {
+      "additionalProperties": true,
+      "type": "object"
+     },
+     "title": "Efficacy",
+     "type": "array"
+    }
+   },
+   "required": [
+    "cohort",
+    "dose_mg",
+    "oracle_decision",
+    "final_decision"
+   ],
+   "title": "CohortResult",
+   "type": "object"
+  },
+  "Critique": {
+   "properties": {
+    "target_claim_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Claim Id"
+    },
+    "target_record_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Record Id"
+    },
+    "target_field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Field"
+    },
+    "target_visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Visit"
+    },
+    "severity": {
+     "enum": [
+      "minor",
+      "major",
+      "critical"
+     ],
+     "title": "Severity",
+     "type": "string"
+    },
+    "category": {
+     "description": "e.g. value_mismatch, unit_error, missing_data, temporal, identity, rule_missed, overclaim, blinding",
+     "title": "Category",
+     "type": "string"
+    },
+    "assertion": {
+     "title": "Assertion",
+     "type": "string"
+    },
+    "proposed_value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Proposed Value"
+    },
+    "proposed_unit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Proposed Unit"
+    },
+    "proposed_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "evidence": {
+     "items": {
+      "$ref": "#/$defs/EvidenceRef"
+     },
+     "title": "Evidence",
+     "type": "array"
+    },
+    "critique_id": {
+     "title": "Critique Id",
+     "type": "string"
+    },
+    "reviewer_id": {
+     "title": "Reviewer Id",
+     "type": "string"
+    },
+    "reviewer_name": {
+     "title": "Reviewer Name",
+     "type": "string"
+    },
+    "planted": {
+     "default": false,
+     "title": "Planted",
+     "type": "boolean"
+    },
+    "verdict": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/ClaimVerdict"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "severity",
+    "category",
+    "assertion",
+    "critique_id",
+    "reviewer_id",
+    "reviewer_name"
+   ],
+   "title": "Critique",
+   "type": "object"
+  },
+  "DataQuery": {
+   "properties": {
+    "query_id": {
+     "title": "Query Id",
+     "type": "string"
+    },
+    "participant_id": {
+     "title": "Participant Id",
+     "type": "string"
+    },
+    "record_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Record Id"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    },
+    "issue": {
+     "title": "Issue",
+     "type": "string"
+    },
+    "raised_by": {
+     "title": "Raised By",
+     "type": "string"
+    },
+    "status": {
+     "default": "open",
+     "enum": [
+      "open",
+      "resolved"
+     ],
+     "title": "Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "query_id",
+    "participant_id",
+    "issue",
+    "raised_by"
+   ],
+   "title": "DataQuery",
+   "type": "object"
+  },
+  "EditorDecision": {
+   "properties": {
+    "stage": {
+     "title": "Stage",
+     "type": "string"
+    },
+    "round": {
+     "title": "Round",
+     "type": "integer"
+    },
+    "outcome": {
+     "enum": [
+      "ACCEPT",
+      "REVISE",
+      "ESCALATE"
+     ],
+     "title": "Outcome",
+     "type": "string"
+    },
+    "reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Reasons",
+     "type": "array"
+    },
+    "oracle_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "agent_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "oracle_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "agent_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "unresolved_critique_ids": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Unresolved Critique Ids",
+     "type": "array"
+    },
+    "lock_hash": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Lock Hash"
+    }
+   },
+   "required": [
+    "stage",
+    "round",
+    "outcome"
+   ],
+   "title": "EditorDecision",
+   "type": "object"
+  },
+  "EvidenceRef": {
+   "properties": {
+    "record_id": {
+     "description": "ID of an approved source record",
+     "title": "Record Id",
+     "type": "string"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Field inside the record's values, if any",
+     "title": "Field"
+    },
+    "quote": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "Exact excerpt copied from the record text, if citing narrative text",
+     "title": "Quote"
+    }
+   },
+   "required": [
+    "record_id"
+   ],
+   "title": "EvidenceRef",
+   "type": "object"
+  },
+  "HumanReviewItem": {
+   "properties": {
+    "item_id": {
+     "title": "Item Id",
+     "type": "string"
+    },
+    "run_id": {
+     "title": "Run Id",
+     "type": "string"
+    },
+    "subject": {
+     "title": "Subject",
+     "type": "string"
+    },
+    "participant_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Participant Id"
+    },
+    "cohort": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cohort"
+    },
+    "routing": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Routing"
+    },
+    "reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Reasons",
+     "type": "array"
+    },
+    "status": {
+     "default": "pending",
+     "enum": [
+      "pending",
+      "confirmed",
+      "overridden"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "reviewer_decision": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Reviewer Decision"
+    },
+    "reviewer_note": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Reviewer Note"
+    }
+   },
+   "required": [
+    "item_id",
+    "run_id",
+    "subject",
+    "reasons"
+   ],
+   "title": "HumanReviewItem",
+   "type": "object"
+  },
+  "Observation": {
+   "properties": {
+    "value": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Value"
+    },
+    "code": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Code"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    },
+    "record_id": {
+     "title": "Record Id",
+     "type": "string"
+    }
+   },
+   "required": [
+    "record_id"
+   ],
+   "title": "Observation",
+   "type": "object"
+  },
+  "ParticipantResult": {
+   "properties": {
+    "participant_id": {
+     "title": "Participant Id",
+     "type": "string"
+    },
+    "cohort": {
+     "title": "Cohort",
+     "type": "integer"
+    },
+    "stages": {
+     "items": {
+      "$ref": "#/$defs/StageResult"
+     },
+     "title": "Stages",
+     "type": "array"
+    },
+    "case_record": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CaseRecord"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "agent_initial_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "agent_final_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "oracle_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "final_routing": {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    "rule_hits": {
+     "items": {
+      "$ref": "#/$defs/RuleHit"
+     },
+     "title": "Rule Hits",
+     "type": "array"
+    },
+    "human_review": {
+     "default": false,
+     "title": "Human Review",
+     "type": "boolean"
+    },
+    "human_review_reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Human Review Reasons",
+     "type": "array"
+    },
+    "data_queries": {
+     "items": {
+      "$ref": "#/$defs/DataQuery"
+     },
+     "title": "Data Queries",
+     "type": "array"
+    },
+    "released_claims": {
+     "items": {
+      "$ref": "#/$defs/Claim"
+     },
+     "title": "Released Claims",
+     "type": "array"
+    },
+    "released_verdicts": {
+     "items": {
+      "$ref": "#/$defs/ClaimVerdict"
+     },
+     "title": "Released Verdicts",
+     "type": "array"
+    },
+    "errors": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Errors",
+     "type": "array"
+    }
+   },
+   "required": [
+    "participant_id",
+    "cohort",
+    "final_routing"
+   ],
+   "title": "ParticipantResult",
+   "type": "object"
+  },
+  "Perturbation": {
+   "properties": {
+    "perturbation_id": {
+     "title": "Perturbation Id",
+     "type": "string"
+    },
+    "lane": {
+     "enum": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6"
+     ],
+     "title": "Lane",
+     "type": "string"
+    },
+    "kind": {
+     "title": "Kind",
+     "type": "string"
+    },
+    "target": {
+     "enum": [
+      "input_view",
+      "source_truth",
+      "agent_context",
+      "reviewers",
+      "model",
+      "verifier"
+     ],
+     "title": "Target",
+     "type": "string"
+    },
+    "participant_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Participant Id"
+    },
+    "cohort": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cohort"
+    },
+    "record_id": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Record Id"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "params": {
+     "additionalProperties": true,
+     "title": "Params",
+     "type": "object"
+    },
+    "description": {
+     "default": "",
+     "title": "Description",
+     "type": "string"
+    },
+    "expected_class": {
+     "enum": [
+      "MUST_DETECT",
+      "MUST_CHANGE",
+      "INVARIANT",
+      "MUST_RESIST"
+     ],
+     "title": "Expected Class",
+     "type": "string"
+    },
+    "expected_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "expected_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "clean_routing": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/RoutingCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "clean_cohort_decision": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/CohortDecisionCode"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "requires_llm": {
+     "default": false,
+     "title": "Requires Llm",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "perturbation_id",
+    "lane",
+    "kind",
+    "target",
+    "expected_class"
+   ],
+   "title": "Perturbation",
+   "type": "object"
+  },
+  "ResponseItem": {
+   "properties": {
+    "critique_id": {
+     "title": "Critique Id",
+     "type": "string"
+    },
+    "decision": {
+     "enum": [
+      "ACCEPT",
+      "REBUT"
+     ],
+     "title": "Decision",
+     "type": "string"
+    },
+    "rationale": {
+     "title": "Rationale",
+     "type": "string"
+    },
+    "evidence": {
+     "items": {
+      "$ref": "#/$defs/EvidenceRef"
+     },
+     "title": "Evidence",
+     "type": "array"
+    }
+   },
+   "required": [
+    "critique_id",
+    "decision",
+    "rationale"
+   ],
+   "title": "ResponseItem",
+   "type": "object"
+  },
+  "ReviewRound": {
+   "properties": {
+    "round": {
+     "title": "Round",
+     "type": "integer"
+    },
+    "draft": {
+     "$ref": "#/$defs/AuthorDraft"
+    },
+    "verification": {
+     "$ref": "#/$defs/VerificationReport"
+    },
+    "critiques": {
+     "items": {
+      "$ref": "#/$defs/Critique"
+     },
+     "title": "Critiques",
+     "type": "array"
+    },
+    "response": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/AuthorResponse"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "editor": {
+     "$ref": "#/$defs/EditorDecision"
+    }
+   },
+   "required": [
+    "round",
+    "draft",
+    "verification",
+    "editor"
+   ],
+   "title": "ReviewRound",
+   "type": "object"
+  },
+  "RoutingCode": {
+   "enum": [
+    "R0",
+    "R1",
+    "RQ",
+    "R2",
+    "R3",
+    "R4"
+   ],
+   "title": "RoutingCode",
+   "type": "string"
+  },
+  "RuleHit": {
+   "properties": {
+    "rule_id": {
+     "title": "Rule Id",
+     "type": "string"
+    },
+    "routing": {
+     "$ref": "#/$defs/RoutingCode"
+    },
+    "description": {
+     "title": "Description",
+     "type": "string"
+    },
+    "visit": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit"
+    },
+    "field": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Field"
+    },
+    "observed": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Observed"
+    },
+    "threshold": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Threshold"
+    },
+    "record_ids": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Record Ids",
+     "type": "array"
+    }
+   },
+   "required": [
+    "rule_id",
+    "routing",
+    "description"
+   ],
+   "title": "RuleHit",
+   "type": "object"
+  },
+  "RunConfig": {
+   "properties": {
+    "mode": {
+     "default": "adversarial",
+     "enum": [
+      "adversarial",
+      "single_agent"
+     ],
+     "title": "Mode",
+     "type": "string"
+    },
+    "backend": {
+     "default": "offline",
+     "title": "Backend",
+     "type": "string"
+    },
+    "participants": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Participants"
+    },
+    "cohorts": {
+     "anyOf": [
+      {
+       "items": {
+        "type": "integer"
+       },
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Cohorts"
+    },
+    "max_revision_rounds": {
+     "default": 2,
+     "title": "Max Revision Rounds",
+     "type": "integer"
+    },
+    "specialist_panel": {
+     "default": true,
+     "title": "Specialist Panel",
+     "type": "boolean"
+    },
+    "perturbations": {
+     "items": {
+      "$ref": "#/$defs/Perturbation"
+     },
+     "title": "Perturbations",
+     "type": "array"
+    },
+    "rep": {
+     "default": 0,
+     "title": "Rep",
+     "type": "integer"
+    },
+    "label": {
+     "default": "",
+     "title": "Label",
+     "type": "string"
+    }
+   },
+   "title": "RunConfig",
+   "type": "object"
+  },
+  "RunVersions": {
+   "properties": {
+    "schema_version": {
+     "title": "Schema Version",
+     "type": "string"
+    },
+    "protocol_version": {
+     "title": "Protocol Version",
+     "type": "string"
+    },
+    "dataset_hash": {
+     "title": "Dataset Hash",
+     "type": "string"
+    },
+    "verifier_version": {
+     "title": "Verifier Version",
+     "type": "string"
+    },
+    "backend": {
+     "title": "Backend",
+     "type": "string"
+    },
+    "models": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "title": "Models",
+     "type": "object"
+    }
+   },
+   "required": [
+    "schema_version",
+    "protocol_version",
+    "dataset_hash",
+    "verifier_version",
+    "backend"
+   ],
+   "title": "RunVersions",
+   "type": "object"
+  },
+  "StageResult": {
+   "properties": {
+    "stage": {
+     "enum": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+     ],
+     "title": "Stage",
+     "type": "string"
+    },
+    "stage_name": {
+     "title": "Stage Name",
+     "type": "string"
+    },
+    "subject": {
+     "title": "Subject",
+     "type": "string"
+    },
+    "rounds": {
+     "items": {
+      "$ref": "#/$defs/ReviewRound"
+     },
+     "title": "Rounds",
+     "type": "array"
+    },
+    "final_outcome": {
+     "enum": [
+      "ACCEPT",
+      "REVISE",
+      "ESCALATE"
+     ],
+     "title": "Final Outcome",
+     "type": "string"
+    },
+    "final_claims": {
+     "items": {
+      "$ref": "#/$defs/Claim"
+     },
+     "title": "Final Claims",
+     "type": "array"
+    },
+    "released_verdicts": {
+     "items": {
+      "$ref": "#/$defs/ClaimVerdict"
+     },
+     "title": "Released Verdicts",
+     "type": "array"
+    }
+   },
+   "required": [
+    "stage",
+    "stage_name",
+    "subject",
+    "final_outcome"
+   ],
+   "title": "StageResult",
+   "type": "object"
+  },
+  "VerificationReport": {
+   "properties": {
+    "verifier_version": {
+     "title": "Verifier Version",
+     "type": "string"
+    },
+    "registry_hash": {
+     "title": "Registry Hash",
+     "type": "string"
+    },
+    "verdicts": {
+     "items": {
+      "$ref": "#/$defs/ClaimVerdict"
+     },
+     "title": "Verdicts",
+     "type": "array"
+    },
+    "n_supported": {
+     "default": 0,
+     "title": "N Supported",
+     "type": "integer"
+    },
+    "n_contradicted": {
+     "default": 0,
+     "title": "N Contradicted",
+     "type": "integer"
+    },
+    "n_unverified": {
+     "default": 0,
+     "title": "N Unverified",
+     "type": "integer"
+    },
+    "available": {
+     "default": true,
+     "title": "Available",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "verifier_version",
+    "registry_hash",
+    "verdicts"
+   ],
+   "title": "VerificationReport",
+   "type": "object"
+  },
+  "VisitEntry": {
+   "properties": {
+    "visit": {
+     "title": "Visit",
+     "type": "string"
+    },
+    "visit_day": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Visit Day"
+    },
+    "date": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Date"
+    },
+    "observations": {
+     "additionalProperties": {
+      "$ref": "#/$defs/Observation"
+     },
+     "title": "Observations",
+     "type": "object"
+    }
+   },
+   "required": [
+    "visit"
+   ],
+   "title": "VisitEntry",
+   "type": "object"
+  }
+ },
+ "properties": {
+  "run_id": {
+   "title": "Run Id",
+   "type": "string"
+  },
+  "status": {
+   "enum": [
+    "queued",
+    "running",
+    "completed",
+    "failed"
+   ],
+   "title": "Status",
+   "type": "string"
+  },
+  "config": {
+   "$ref": "#/$defs/RunConfig"
+  },
+  "versions": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/RunVersions"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "started_at": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Started At"
+  },
+  "finished_at": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Finished At"
+  },
+  "duration_s": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Duration S"
+  },
+  "participants": {
+   "items": {
+    "$ref": "#/$defs/ParticipantResult"
+   },
+   "title": "Participants",
+   "type": "array"
+  },
+  "cohorts": {
+   "items": {
+    "$ref": "#/$defs/CohortResult"
+   },
+   "title": "Cohorts",
+   "type": "array"
+  },
+  "review_queue": {
+   "items": {
+    "$ref": "#/$defs/HumanReviewItem"
+   },
+   "title": "Review Queue",
+   "type": "array"
+  },
+  "llm_calls": {
+   "default": 0,
+   "title": "Llm Calls",
+   "type": "integer"
+  },
+  "error": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Error"
+  }
+ },
+ "required": [
+  "run_id",
+  "status",
+  "config"
+ ],
+ "title": "RunResult",
+ "type": "object"
+}

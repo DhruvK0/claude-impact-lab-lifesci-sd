@@ -1,0 +1,79 @@
+{
+ "properties": {
+  "agent_id": {
+   "title": "Agent Id",
+   "type": "string"
+  },
+  "name": {
+   "title": "Name",
+   "type": "string"
+  },
+  "title": {
+   "title": "Title",
+   "type": "string"
+  },
+  "seat": {
+   "title": "Seat",
+   "type": "string"
+  },
+  "stages": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Stages",
+   "type": "array"
+  },
+  "blinded": {
+   "title": "Blinded",
+   "type": "boolean"
+  },
+  "streams": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Streams",
+   "type": "array"
+  },
+  "temperament": {
+   "title": "Temperament",
+   "type": "string"
+  },
+  "expertise": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Expertise",
+   "type": "array"
+  },
+  "red_flags": {
+   "items": {
+    "type": "string"
+   },
+   "title": "Red Flags",
+   "type": "array"
+  },
+  "voice": {
+   "title": "Voice",
+   "type": "string"
+  },
+  "system_prompt": {
+   "default": "",
+   "title": "System Prompt",
+   "type": "string"
+  }
+ },
+ "required": [
+  "agent_id",
+  "name",
+  "title",
+  "seat",
+  "stages",
+  "blinded",
+  "temperament",
+  "expertise",
+  "red_flags",
+  "voice"
+ ],
+ "title": "Persona",
+ "type": "object"
+}
