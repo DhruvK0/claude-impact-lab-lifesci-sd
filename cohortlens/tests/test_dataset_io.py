@@ -18,8 +18,6 @@ def test_upload_activates_dataset_and_rejects_foreign_files(reg, tmp_path):
     api._store = Store(root=tmp_path / "runs", registry=reg)
     client = TestClient(api.app)
     files = [{"name": p.name, "text": p.read_text(encoding="utf-8")} for p in (tmp_path / "csv").glob("*.csv")]
-    edited = next(f for f in files if f["name"] == "labs.csv")
-    edited["text"] = edited["text"].replace("LAB-P-1041-V5,P-1041,5,labs,central_lab_report,V5,22,", "LAB-P-1041-V5,P-1041,5,labs,central_lab_report,V5,22,", 1)
     r = client.post("/api/datasets/upload", json={"files": files + [{"name": "notes.csv", "text": "a,b\n1,2\n"}]})
     body = r.json()
     assert r.status_code == 200 and body["matches_reference"] and body["n_records"] == 1217

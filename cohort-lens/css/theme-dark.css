@@ -1,0 +1,31 @@
+/* Broadsheet — dark ground. Redefines only tokens: ramps are mirrored on the same
+   lightness scale, so "100 background / 800 text" pairs stay legible in both themes.
+   Applies with the OS dark preference unless data-theme="light", and with data-theme="dark". */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #161514; --color-surface: #1f1e1d; --color-text: #ece8e6; --color-accent: #3fb6e0; --color-accent-2: #ff5c9d;
+    --color-divider: color-mix(in srgb, #ece8e6 18%, transparent);
+    --color-neutral-100: #262423; --color-neutral-200: #302e2d; --color-neutral-300: #3d3a39; --color-neutral-400: #57534f;
+    --color-neutral-500: #77726e; --color-neutral-600: #98928e; --color-neutral-700: #b6b0ac; --color-neutral-800: #d7d1cd; --color-neutral-900: #ece8e6;
+    --color-accent-100: #0b2c38; --color-accent-200: #0d3a4a; --color-accent-300: #0b4c63; --color-accent-400: #0a6a88; --color-accent-500: #1a8bb0;
+    --color-accent-600: #3fb6e0; --color-accent-700: #6ccbef; --color-accent-800: #a3e2fb; --color-accent-900: #d2f1ff;
+    --color-accent-2-100: #3d1422; --color-accent-2-200: #521a2e; --color-accent-2-300: #6e1c3c; --color-accent-2-400: #9a1a55; --color-accent-2-500: #d3307a;
+    --color-accent-2-600: #ff5c9d; --color-accent-2-700: #ff8fb3; --color-accent-2-800: #ffc1d2; --color-accent-2-900: #ffe2ea;
+    --shadow-sm: 0 0 0 1px color-mix(in srgb, #ece8e6 10%, transparent);
+    --shadow-md: 0 0 0 1px color-mix(in srgb, #ece8e6 12%, transparent), 0 6px 18px rgb(0 0 0 / 0.45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #161514; --color-surface: #1f1e1d; --color-text: #ece8e6; --color-accent: #3fb6e0; --color-accent-2: #ff5c9d;
+  --color-divider: color-mix(in srgb, #ece8e6 18%, transparent);
+  --color-neutral-100: #262423; --color-neutral-200: #302e2d; --color-neutral-300: #3d3a39; --color-neutral-400: #57534f;
+  --color-neutral-500: #77726e; --color-neutral-600: #98928e; --color-neutral-700: #b6b0ac; --color-neutral-800: #d7d1cd; --color-neutral-900: #ece8e6;
+  --color-accent-100: #0b2c38; --color-accent-200: #0d3a4a; --color-accent-300: #0b4c63; --color-accent-400: #0a6a88; --color-accent-500: #1a8bb0;
+  --color-accent-600: #3fb6e0; --color-accent-700: #6ccbef; --color-accent-800: #a3e2fb; --color-accent-900: #d2f1ff;
+  --color-accent-2-100: #3d1422; --color-accent-2-200: #521a2e; --color-accent-2-300: #6e1c3c; --color-accent-2-400: #9a1a55; --color-accent-2-500: #d3307a;
+  --color-accent-2-600: #ff5c9d; --color-accent-2-700: #ff8fb3; --color-accent-2-800: #ffc1d2; --color-accent-2-900: #ffe2ea;
+  --shadow-sm: 0 0 0 1px color-mix(in srgb, #ece8e6 10%, transparent);
+  --shadow-md: 0 0 0 1px color-mix(in srgb, #ece8e6 12%, transparent), 0 6px 18px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}

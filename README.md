@@ -48,6 +48,7 @@ Rule: irrelevant perturbations must not move facts or routing; relevant ones mus
 | `architecture.pdf` | Adversarial Peer Review Framework diagram |
 | `Research Workflow.png` | Original whiteboard sketch: CRA → case record → DSMB agent → participant routing |
 | `CohortLens_Product_Pitch_With_Speaker_Notes.pptx` | 8-slide product pitch with speaker notes |
+| `synthetic data/` | Uploadable CSV batch for study CVX-214-101 (drop into step 1 of the UI) plus an answer key used only for evaluation |
 
 ## Getting started
 
@@ -61,14 +62,16 @@ python -m venv .venv
 .venv\Scripts\activate        # Windows
 # source .venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
-cp .env.example .env          # add an OpenRouter or Anthropic key, or leave empty to run offline
+cp .env.example .env          # OPENROUTER_API_KEY runs every agent on qwen/qwen3.7-plus; leave empty to run offline
 
 python -m cohortlens generate # build the synthetic dataset into data/
 python -m cohortlens run      # run the workflow (results go to runs/)
 python -m cohortlens eval     # run the hallucination evals
-python -m cohortlens serve    # start the API
+python -m cohortlens serve    # API + UI at http://localhost:8000 (live runs, CSV uploads, review queue)
 pytest
 ```
+
+`python -m cohortlens export-frontend --out ../cohort-lens/js --with-eval` refreshes the UI's static `data.js` from a real run; `python -m cohortlens export-data` regenerates `synthetic data/`.
 
 `data/`, `runs/` and `.env` are generated locally and are not committed.
 

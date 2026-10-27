@@ -90,6 +90,13 @@ class Pipeline:
     def nid(self, prefix: str) -> str:
         return f"{prefix}-{next(self._ids):05d}"
 
+    def parallel(self, fn, items: list) -> list:
+        """Map fn over independent items; concurrent for LLM backends (calls are I/O bound), in order for offline."""
+        if self.backend.name == "offline" or len(items) < 2:
+            return [fn(x) for x in items]
+        with ThreadPoolExecutor(max_workers=min(6, len(items))) as ex:
+            return list(ex.map(fn, items))
+
     def context(self, pid: str) -> PContext:
         if pid not in self.contexts:
             self.contexts[pid] = PContext(view=self.truth.participant_records(pid, include_restricted=True))
@@ -168,7 +175,7 @@ class Pipeline:
                                           "perturbations": [p.perturbation_id for p in self.cfg.perturbations],
                                           "dataset_hash": self.truth.hash}, self.run_id)
         self.emit("run_started", n_participants=len(pids), mode=self.cfg.mode, backend=self.backend.name)
-        workers = 4 if self.backend.name == "claude" else 1
+        workers = 1 if self.backend.name == "offline" else 4
         with ThreadPoolExecutor(max_workers=workers) as ex:
             res.participants = list(ex.map(self.run_participant, pids))
         for c in sorted({self.truth.cohort_of(p) for p in pids}):
@@ -231,12 +238,13 @@ class Pipeline:
     # ------------------------------------------------------------------ S1
     def stage_s1(self, pid: str, ctx: PContext):
         results, claims_all, queries, escalated = [], [], [], False
+        jobs = []
         for stream in S1_STREAMS:
             view = [r for r in ctx.view if r.stream == stream]
             truth = [r for r in self.truth.participant_records(pid) if r.stream == stream]
-            if not view and not truth:
-                continue
-            sr, claims, qs = self._s1_stream(pid, stream, view, truth, ctx)
+            if view or truth:
+                jobs.append((stream, view, truth))
+        for sr, claims, qs in self.parallel(lambda j: self._s1_stream(pid, j[0], j[1], j[2], ctx), jobs):
             results.append(sr)
             claims_all += claims
             queries += qs
@@ -266,16 +274,16 @@ class Pipeline:
             self.emit("verification", stage, subject, round=rnd, supported=report.n_supported,
                       contradicted=report.n_contradicted, unverified=report.n_unverified)
             captured = [c.model_dump() for c in claims]
-            critiques = self.review(ctx, "sdv_reviewer", "s1_sdv_review", stage,
-                                    "Verify each captured value against the original source documents.",
-                                    {"participant_id": pid, "stream": stream, "captured": captured,
-                                     "source_documents": [dump_record(r) for r in truth]})
+            seats = [("sdv_reviewer", "s1_sdv_review", "Verify each captured value against the original source documents.",
+                      {"participant_id": pid, "stream": stream, "captured": captured,
+                       "source_documents": [dump_record(r) for r in truth]})]
             if self.cfg.specialist_panel and stream in SPECIALIST_FOR_STREAM:
-                critiques += self.review(ctx, SPECIALIST_FOR_STREAM[stream], "s1_specialist_review", stage,
-                                         f"Review the captured {stream} values for units, plausibility and internal consistency.",
-                                         {"participant_id": pid, "stream": stream, "captured": captured,
-                                          "protocol_analytes": {f: a for f, a in self.proto["analytes"].items() if a["stream"] == stream},
-                                          "records": [{"record_id": r.record_id, "text": r.text} for r in view if r.text]})
+                seats.append((SPECIALIST_FOR_STREAM[stream], "s1_specialist_review",
+                              f"Review the captured {stream} values for units, plausibility and internal consistency.",
+                              {"participant_id": pid, "stream": stream, "captured": captured,
+                               "protocol_analytes": {f: a for f, a in self.proto["analytes"].items() if a["stream"] == stream},
+                               "records": [{"record_id": r.record_id, "text": r.text} for r in view if r.text]}))
+            critiques = [c for batch in self.parallel(lambda x: self.review(ctx, x[0], x[1], stage, x[2], x[3]), seats) for c in batch]
             critiques += self.planted(ctx, stage, stream)
             self.verify_critiques(critiques, ver, pid, blinded=True)
             self.emit("critiques", stage, subject, round=rnd, n=len(critiques),
@@ -416,13 +424,12 @@ class Pipeline:
             draft = AuthorDraft(author_id="cra", summary=narr.narrative, claims=live, data_queries=cr.data_queries)
             self.emit("verification", stage, pid, round=rnd, supported=report.n_supported, contradicted=report.n_contradicted,
                       unverified=report.n_unverified)
-            critiques = self.review(ctx, "data_manager", "s2_data_manager_review", stage,
-                                    "Check completeness, chronology and visit windows of this case record.",
-                                    {"case_record": cr.model_dump(), "visit_schedule": self.proto["visits"], "required_fields": required})
-            critiques += self.review(ctx, "narrative_reviewer", "s2_narrative_review", stage,
-                                     "Check every narrative claim against the case record tables and participant identity.",
-                                     {"case_record": cr.model_dump(), "narrative": narr.narrative, "claims": [c.model_dump() for c in live],
-                                      "baseline_visit": self.proto["baseline_visit"]})
+            seats = [("data_manager", "s2_data_manager_review", "Check completeness, chronology and visit windows of this case record.",
+                      {"case_record": cr.model_dump(), "visit_schedule": self.proto["visits"], "required_fields": required}),
+                     ("narrative_reviewer", "s2_narrative_review", "Check every narrative claim against the case record tables and participant identity.",
+                      {"case_record": cr.model_dump(), "narrative": narr.narrative, "claims": [c.model_dump() for c in live],
+                       "baseline_visit": self.proto["baseline_visit"]})]
+            critiques = [c for batch in self.parallel(lambda x: self.review(ctx, x[0], x[1], stage, x[2], x[3]), seats) for c in batch]
             critiques += self.planted(ctx, stage)
             self.verify_critiques(critiques, ver, pid, blinded=True)
             self.emit("critiques", stage, pid, round=rnd, n=len(critiques), by_reviewer=_count_by(critiques, "reviewer_id"))
@@ -495,10 +502,9 @@ class Pipeline:
             payload = {"case_record": unblinded.model_dump(), "protocol": self.proto,
                        "draft": {"proposed_routing": out.proposed_routing.value, "rationale": out.rationale,
                                  "findings": [c.model_dump() for c in findings]}}
-            critiques: list[Critique] = []
-            for rid in S3_REVIEWERS:
-                critiques += self.review(ctx, rid, "s3_review", "S3",
-                                         "Challenge the DSMB author's findings and routing from your seat.", payload)
+            critiques: list[Critique] = [c for batch in self.parallel(
+                lambda rid: self.review(ctx, rid, "s3_review", "S3", "Challenge the DSMB author's findings and routing from your seat.", payload),
+                S3_REVIEWERS) for c in batch]
             critiques += self.planted(ctx, "S3")
             self.verify_critiques(critiques, ver, pid, blinded=False)
             self.emit("critiques", "S3", pid, round=rnd, n=len(critiques), by_reviewer=_count_by(critiques, "reviewer_id"))
@@ -628,8 +634,9 @@ class Pipeline:
             if self.cfg.mode == "adversarial":
                 payload = {"cohort": cohort, "participants": part_payload, "cohort_rules": self.proto["cohort_rules"],
                            "draft": {"decision": out.decision.value, "rationale": out.rationale, "findings": [c.model_dump() for c in claims]}}
-                for rid in S3_REVIEWERS:
-                    critiques += self.review(ctx, rid, "s5_review", "S5", "Challenge the cohort decision from your seat.", payload)
+                critiques += [c for batch in self.parallel(
+                    lambda rid: self.review(ctx, rid, "s5_review", "S5", "Challenge the cohort decision from your seat.", payload),
+                    S3_REVIEWERS) for c in batch]
                 critiques += self.planted(ctx, "S5")
                 if critiques:
                     rout: ResponseOutput = self.call(ctx, "s5_respond", "dsmb_chair", "S5",

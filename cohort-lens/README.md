@@ -2,9 +2,9 @@
 
 **Adversarial safety review for a Data Safety Monitoring Board (DSMB).**
 
-Cohort Lens is a front-end prototype for checking an AI safety agent's work. It takes the documents from a phase 1 cardiovascular trial, has a primary agent issue a PASS / REVIEW / FAIL verdict for each participant with citations, then sends a swarm of ten adversarial reviewer agents to challenge every verdict. Wherever the swarm can't agree, or a citation doesn't match its source, the case goes to a research associate's worklist.
+Cohort Lens is the front end for checking an AI safety agent's work. It takes the documents from a phase 1 cardiovascular trial and has the DSMB agent issue a PASS / REVIEW / FAIL verdict for each participant, with citations. Twelve expert reviewer agents and two deterministic checks (citation verifier, protocol oracle) then challenge every verdict. Wherever they can't agree, a citation doesn't match its source, or a stopping rule is met, the case goes to a research associate's worklist.
 
-> ⚠️ All data in this repository is **synthetic**. Study *CVX-214-101* and its participants are fictional, and no agents actually run — every value is hardcoded in `js/data.js`.
+> ⚠️ All data in this repository is **synthetic**. Study *CVX-214-101* and its participants are fictional. `js/data.js` is generated from a real run of the CohortLens pipeline (`../cohortlens`); with the API running, the UI runs the agents live.
 
 ## The five steps
 
@@ -43,9 +43,11 @@ cohort-lens/
 ├── index.html          Page shell: masthead, the #app mount point, script tags
 ├── css/
 │   ├── broadsheet.css  Design tokens and base components (Broadsheet design system)
+│   ├── theme-dark.css  Dark-ground token overrides
 │   └── app.css         Layout for this app only
 └── js/
-    ├── data.js         Synthetic trial data: agents, documents, participants, charter rules
+    ├── data.js         Generated pipeline export (window.COHORT_LENS_DATA); data.json is the same as JSON
+    ├── loader.js       Picks static export or live API, then starts app.js
     └── app.js          State, rendering for each step, and event handling
 ```
 
@@ -58,13 +60,15 @@ cohort-lens/
 
 ## Connecting real agents
 
-Replace the hardcoded data in `js/data.js` with the output of your pipeline, in the same shape:
+This is already wired to the CohortLens backend in `../cohortlens`. Full contract: `../cohortlens/docs/UI_INTEGRATION.md`.
 
-- `patients[].verdict`, `rationale` and `cites[]` come from the primary agent. Each citation is `{ doc, loc, quote, ok }`, where `ok: false` means the citation verifier found a mismatch.
-- `patients[].ov` holds each reviewer's `[confidence, note]`, keyed by agent.
-- `patients[].sev` is the severity rank (0–4) used by "most severe first".
-
-`app.js` doesn't need to change.
+- **Static:** `python -m cohortlens export-frontend --out ../cohort-lens/js --with-eval` regenerates `js/data.js` from a real pipeline run, plus an evaluation for the assurance panel in step 5.
+- **Live:** `python -m cohortlens serve`, then open http://localhost:8000. The UI is served with the API attached. Alternatively, open `index.html?api=http://localhost:8000`.
+  - Step 1 uploads the CSVs in `../synthetic data/` to the approved-source registry.
+  - *Run primary agent* starts a real run and streams its progress.
+  - Worklist decisions are posted to the human-review queue and the audit log.
+- `js/loader.js` chooses the source. `app.js` reads `window.COHORT_LENS_DATA` in the shape documented above, plus `routing`, `humanReview`, `rules`, `dataQueries`, `adversarial` and `cohorts`.
+- Reviewer confidence is derived from each seat's structured critique. The exact mapping is in `meta.confidenceNote`.
 
 ## Design
 

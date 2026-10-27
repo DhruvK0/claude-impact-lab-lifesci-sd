@@ -54,3 +54,21 @@ def test_audit_chain_detects_tampering(tmp_path):
     lines[1] = json.dumps(tampered)
     path.write_text("\n".join(lines) + "\n")
     assert AuditLog(path).verify() == (False, 1)
+
+
+def test_two_writers_on_one_file_keep_a_valid_chain(tmp_path):
+    """The API server and a CLI evaluation each hold their own AuditLog on the same file."""
+    import threading
+    path = tmp_path / "audit.jsonl"
+    a, b = AuditLog(path), AuditLog(path)
+
+    def write(log, tag):
+        for i in range(150):
+            log.append("event", {"writer": tag, "i": i})
+    threads = [threading.Thread(target=write, args=(a, "server")), threading.Thread(target=write, args=(b, "cli"))]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len(AuditLog(path).entries()) == 300
+    assert AuditLog(path).verify() == (True, None)

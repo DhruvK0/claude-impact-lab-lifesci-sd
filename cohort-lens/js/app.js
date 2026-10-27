@@ -408,6 +408,9 @@
       ? `<div>
           <div style="font-size:17px;font-weight:600">Packet signed and exported</div>
           <div class="small" style="margin-top:4px">${esc(meta.study || '')} · run ${esc(meta.runId || '')} · ${P.length} verdicts, ${list.length} human decisions, ${P.length * agents.length} reviewer scores and the full citation trail.</div>
+          ${window.COHORT_LENS_NO_DOWNLOAD && state.packetText ? `<div style="margin-top:10px">
+            <button class="btn btn-secondary" data-action="copy-packet">${state.copied ? 'Copied' : 'Copy packet JSON'}</button>
+            <textarea id="packet-json" class="packet-json" readonly rows="6" aria-label="DSMB packet JSON">${esc(state.packetText)}</textarea></div>` : ''}
           <button class="btn btn-ghost" data-action="restart" style="margin-top:8px;margin-left:-5px">Start a new batch</button>
         </div>`
       : `<div>
@@ -502,7 +505,9 @@
       perturbations: meta.perturbations || [], evaluation: meta.evaluation ? { id: meta.evaluation.evaluation_id, gates: meta.evaluation.gates } : null,
       synthetic: true,
     };
-    const url = URL.createObjectURL(new Blob([JSON.stringify(packet, null, 1)], { type: 'application/json' }));
+    state.packetText = JSON.stringify(packet, null, 1);
+    if (window.COHORT_LENS_NO_DOWNLOAD) return; // sandboxed hosts block downloads: step 5 offers copy instead
+    const url = URL.createObjectURL(new Blob([state.packetText], { type: 'application/json' }));
     const a = Object.assign(document.createElement('a'), { href: url, download: `dsmb-packet-${meta.runId || 'batch'}.json` });
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -551,6 +556,13 @@
       case 'decide': state.decisions[id] = el.dataset.decision; postDecision(id, el.dataset.decision); render(); break;
       case 'undo': delete state.decisions[id]; render(); break;
       case 'export': exportPacket(); state.exported = true; render(); break;
+      case 'copy-packet': {
+        const select = () => { const t = document.getElementById('packet-json'); if (t) { t.focus(); t.select(); } };
+        try {
+          navigator.clipboard.writeText(state.packetText).then(() => { state.copied = true; render(); }, select);
+        } catch (err) { select(); }
+        break;
+      }
       case 'restart':
         Object.assign(state, { step: 1, maxStep: 1, decisions: {}, exported: false, selectedId: firstSelected(), cite: { pid: firstSelected(), i: 0 } });
         render(); window.scrollTo({ top: 0 }); break;
